@@ -33,41 +33,29 @@ module.exports = (app) => {
   app.use('/api', router);
 
   app.use((req, res, next) => {
-    if (req.headers.host.includes('admin.')) {
-      express.static('admin/build')(req, res, next);
+    const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');
+    const requestedPath = (req.headers.referer || '').slice(lastIndexOfSlash + 1);
+
+    if ([...(req.headers.referer || '')].filter((x) => x === '/').length == 3 && requestedPath.length > 0) {
+      express.static('web-menu')(req, res, next);
     } else {
-      const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');
-      const requestedPath = (req.headers.referer || '').slice(lastIndexOfSlash + 1);
-
-      if ([...(req.headers.referer || '')].filter((x) => x === '/').length == 3 && requestedPath.length > 0) {
-        express.static('web-menu')(req, res, next);
-      } else {
-        express.static('presentation-site')(req, res, next);
-      }
-
-      app.get('/yourname', (req, res) => {
-        res.sendFile('presentation-site/scan-succesful.html', { root: __dirname });
-      });
-
-      app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
-      app.get('/:restaurantSlug', users.showMenuIfValidSlug);
-
-      app.get('/api/*', (req, res, next) => {
-        res.status(404).json({ message: 'not found 2' });
-      });
-
-      app.get('*', (req, res, next) => {
-        return res.redirect('https://touchfreemenu.ro/');
-      });
+      express.static('presentation-site')(req, res, next);
     }
-  });
 
-  app.use((req, res, next) => {
-    if (req.headers.host.includes('admin.')) {
-      res.sendFile('admin/build/index.html', { root: __dirname });
-    } else {
-      next();
-    }
+    app.get('/yourname', (req, res) => {
+      res.sendFile('presentation-site/scan-succesful.html', { root: __dirname });
+    });
+
+    app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
+    app.get('/:restaurantSlug', users.showMenuIfValidSlug);
+
+    app.get('/api/*', (req, res, next) => {
+      res.status(404).json({ message: 'not found 2' });
+    });
+
+    app.get('*', (req, res, next) => {
+      return res.redirect('https://touchfreemenu.ro/');
+    });
   });
 
   app.use((err, req, res, next) => {
