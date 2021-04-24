@@ -6,6 +6,10 @@ const products = require('./controllers/products');
 const auth = require('./services/auth');
 const express = require('express');
 const router = express.Router();
+const yamljs = require('yamljs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = yamljs.load('swagger/api.yaml');
+
 
 router.post('/request-demo', demoRequests.requestDemo);
 router.post('/login', users.login);
@@ -31,6 +35,8 @@ router.post('/products/move', auth.withCurrentUser, products.move);
 
 module.exports = (app) => {
   app.use('/api', router);
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
   app.use((req, res, next) => {
     const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');

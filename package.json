@@ -34,7 +34,9 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "qrcode": "^1.4.4"
+    "qrcode": "^1.4.4",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.21.4",

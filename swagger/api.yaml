@@ -1,0 +1,636 @@
+openapi: 3.0.3
+info:
+  version: 0.1.0
+  description: Open API Documentation of Touch Free Menu App
+  title: 'Touch Free Menu'
+paths:
+  /api/register:
+    post:
+      tags:
+        - Registration and Authentication
+      summary: Register
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Register'
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+        '422':
+          description: Unprocessable Entity
+  /api/login:
+    post:
+      tags:
+        - Registration and Authentication
+      summary: Login
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Login'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+        '422':
+          description: Unprocessable Entity
+  /api/change-password:
+    post:
+      tags:
+        - Registration and Authentication
+      summary: Change password
+      operationId: changePassword
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/ChangePassword'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+        '422':
+          description: Unprocessable Entity
+  /api/get-current-user:
+    get:
+      tags:
+        - Registration and Authentication
+      summary: Get current user
+      operationId: getCurrentUser
+      security:
+        - auth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/request-demo:
+    post:
+      tags:
+        - Demo
+      summary: Request a Demo
+      operationId: requestDemo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/RequestDemo'
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestDemo'
+  /api/categories:
+    get:
+      tags:
+        - Categories
+      summary: Retrieves a list of categories
+      operationId: listCategories
+      security:
+        - auth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category' 
+    post:
+      tags:
+        - Categories
+      summary: Create a category
+      operationId: createCategory
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+              properties:
+                name: 
+                  type: string
+                  minLength: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category' 
+    put:
+      tags:
+        - Categories
+      summary: Update a category
+      operationId: updateCategory
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - id
+                - name
+              properties:
+                id: 
+                  type: string
+                name: 
+                  type: string
+                  minLength: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category' 
+  /api/categories/{categoryId}:
+    delete:
+      tags:
+        - Categories
+      summary: Delete a category
+      operationId: deleteCategory
+      security:
+        - auth: []
+      parameters:
+        - $ref: '#/components/parameters/categoryId'  
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean 
+  /api/categories/move:
+    post:
+      tags:
+        - Categories
+      summary: Move a category on a different index
+      operationId: moveCategory
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - categoryId
+                - destinationIndex
+              properties:
+                categoryId: 
+                  type: string
+                destinationIndex: 
+                  type: number
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category' 
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: Retrieves a list of products
+      operationId: listProducts
+      security:
+        - auth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product' 
+    post:
+      tags:
+        - Products
+      summary: Create a product
+      operationId: createProduct
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Product' 
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product' 
+    put:
+      tags:
+        - Products
+      summary: Update a product
+      operationId: updateProduct
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  type: string
+                  format: binary
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/requestBodies/Product'
+                - type: object
+                  required:
+                    - id
+                  properties:
+                    id:
+                      type: string
+                    imageUrl:
+                      type: string  
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product' 
+  /api/products/{productId}:
+    delete:
+      tags:
+        - Products
+      summary: Delete a product
+      operationId: deleteProduct
+      security:
+        - auth: []
+      parameters:
+        - $ref: '#/components/parameters/productId'  
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+  /api/products/move:
+    post:
+      tags:
+        - Products
+      summary: Move a product on a different index
+      operationId: moveProduct
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - productId
+                - destinationIndex
+              properties:
+                productId: 
+                  type: string
+                destinationIndex: 
+                  type: number
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product' 
+  /api/covid-questionnaire:
+    post:
+      tags:
+        - Covid Questionnaire
+      summary: Submit a covid questionnaire
+      operationId: submitQuestionnaire
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/CovidQuestionnaire' 
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CovidQuestionnaire' 
+  /api/toggle-covid-questionnaire:
+    post:
+      tags:
+        - Covid Questionnaire
+      summary: Toggle covid questionnaire
+      operationId: toggleQuestionnaire
+      security:
+        - auth: []
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                properties:
+                  newValue:
+                    type: boolean
+                    description: Describes if covid questionnaire is enabled
+  /api/pdf-menu:
+    post:
+      tags:
+        - Pdf Menu
+      summary: Update pdf menu url
+      operationId: updatePdfMenuUrl
+      security:
+        - auth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                properties:
+                  pdfUrl:
+                    type: string
+                    description: New pdf location
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    categoryId:
+      name: categoryId
+      in: path
+      required: true
+      description: Id of the category to delete
+      schema:
+        type: string
+    productId:
+      name: productId
+      in: path
+      required: true
+      description: Id of the product to delete
+      schema:
+        type: string
+  requestBodies:
+    Register:
+      required:
+        - username
+        - password
+        - name
+        - email
+        - logoUrl
+        - city
+        - coords
+      properties:
+        username: 
+          type: string
+          minLength: 1
+          maxLength: 32
+          pattern: '^[a-zA-Z0-9_-]+$'
+        password:
+          type: string
+          minLength: 4
+          maxLength: 72
+        name:
+          type: string
+        email:
+          type: string
+        logoUrl:
+          type: string
+        city:
+          type: string
+        coords:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        registrationSecret:
+          type: string
+    RequestDemo:
+      required: 
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+    Login:
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    ChangePassword:
+      required:
+        - oldPassword
+        - newPassword
+      properties:
+        oldPassword: 
+          type: string
+        newPassword:
+          type: string
+    Product:
+      required:
+        - name
+        - categoryId
+      properties:
+        name:
+          type: string
+        ingredients:
+          type: string
+        quantities:
+          type: string
+        price:
+          type: integer
+        isDiscounted:
+          type: boolean
+        discountedPrice:
+          type: integer
+        categoryId:
+          type: string
+    CovidQuestionnaire:
+      required:
+        - targetRestaurant
+      properties:
+        targetRestaurant:
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+          format: email
+        tableSeated:
+          type: string 
+  schemas:
+    RequestDemo:
+      properties:
+        succesfullyRequested:
+          type: boolean
+    Login:
+      properties:
+        token:
+          type: string
+    ChangePassword:
+      properties:
+        success: 
+          type: string
+          description: New password
+    User:
+      properties:
+        username: 
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        logoUrl:
+          type: string
+        city:
+          type: string
+        coords:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        joinDate:
+          type: string   
+          format: date-time
+        id:
+          type: string
+    Category:
+      properties:
+        name:
+          type: string
+        index:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        id:
+          type: string
+    Product:
+      properties:
+        name:
+          type: string
+        imageUrl:
+          type: string
+        imageKey:
+          type: string
+        ingredients:
+          type: string
+        quantities:
+          type: string
+        price:
+          type: integer
+        isDiscounted:
+          type: boolean
+        discountedPrice:
+          type: integer
+        categoryId:
+          type: string
+        index:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        id:
+          type: string
+    CovidQuestionnaire:
+      properties:
+        targetRestaurant:
+          type: string
+        date:
+          type: string
+          format: date-time  
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+          format: email
+        tableSeated:
+          type: string
+        ip:
+          type: string
