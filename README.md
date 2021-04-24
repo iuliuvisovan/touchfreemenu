@@ -1,6 +1,6 @@
 # touchfreemenu
 
-Touch-Free Menu™ e alternativa sigură la meniurile clasice
+Touch-Free Menu™ e alternativa digitală la meniurile clasice
 
 ## Installation
 
@@ -39,24 +39,4 @@ Touch-Free Menu™ e alternativa sigură la meniurile clasice
     $ cd client
     $ npm start
     ```
-4. Browse to `http://localhost:3000/`
-
-## Testing
-
-### Server
-Make sure mongodb is running before testing the server.
-```bash
-$ cd server
-$ npm test
-```
-
-### Client
-```bash
-$ cd client
-$ npm test
-```
-
-## License
-
-This project is made available under the **MIT License**.
-"# lynd" 
+4. Browse to `http://localhost:3001/`
