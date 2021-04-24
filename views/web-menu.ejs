@@ -1,7 +1,7 @@
 <html translate="no">
   <head>
     <meta charset="utf-8" />
-    <title>Deutsches Haus | Meniu</title>
+    <title>Meniu | <%- restaurant.name %></title>
     <link rel="icon" href="img/logo-medium.png" type="image/png" sizes="16x16" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,31 +11,17 @@
   </head>
 
   <body>
-    <% if(user.isCovidQuestionnaireEnabled) { %>
-    <div class="pre-menu">
-      <img src="img/restaurant-logo.jpg" alt="Restaurant Logo" class="restaurant-logo" />
-      <h1>Bun venit la Deutsches Haus!</h1>
-      <p>Înainte de a accesa meniul, lasă-ne, te rog, câteva informații pentru a respecta legislația în vigoare. 🙂</p>
-      <div class="label">Nume</div>
-      <input type="text" class="field" id="fullName" />
-      <div class="label">Număr de telefon</div>
-      <input type="text" class="field" id="phoneNumber" />
-      <div class="label">Data și ora</div>
-      <input disabled id="dateTime" type="text" />
-      <input id="seeMenuButton" disabled="true" type="button" value="Vezi meniul" placeholder="Vezi meniul" />
-    </div>
-    <% } %>
     <div class="menu">
       <div class="cover-wrapper">
-        <img class="cover-photo" src="img/cover-photo.jpg" />
+        <img class="cover-photo" src="https://www.zilesinopti.ro/media/217fd7a95ac0dc832f47c99e891235ab.jpg/resize?w=750" />
         <div class="bottom-gradient"></div>
         <div class="restaurant-logo-wrapper">
           <div class="inner">
-            <img src="img/restaurant-logo.jpg" alt="Restaurant Logo" class="restaurant-logo" />
+            <img src="<%- restaurant.logoUrl %>" alt="Restaurant Logo" class="restaurant-logo" />
           </div>
         </div>
-        <!-- <h1 class="title">Subway Sigma</h1> -->
-        <h2 class="title">Meniu</h2>
+        <h1 class="title"><%- restaurant.name %></h1>
+        <h2 class="subtitle">Meniu</h2>
       </div>
       <div class="search-wrapper">
         <input id="searchInput" type="text" placeholder="Caută" />
@@ -44,18 +30,14 @@
         </div>
       </div>
       <div class="categories-wrapper">
-        <div class="category-button">Aperitive</div>
-        <div class="category-button">Supe</div>
-        <div class="category-button">Fel principal</div>
-        <div class="category-button">Grill – Cârnați</div>
-        <div class="category-button">Paste făcute în casă</div>
-        <div class="category-button">Garnituri</div>
-        <div class="category-button">Salate</div>
-        <div class="category-button">Desert</div>
-        <div class="category-button">Sosuri</div>
+        <% restaurant.categories.forEach(function(category) { %>
+        <div class="category-button"><%= category.name %></div>
+        <% }); %>
       </div>
       <div class="products-wrapper">
-        <div class="category-label">Aperitive</div>
+        <% restaurant.categories.forEach(function(category) { %>
+        <div class="category-label"><%- category.name %></div>
+        <% category.products.forEach(function(product) { %>
         <div class="product">
           <div class="name">Brezzel cu cremă de brânză</div>
           <div class="weight">150gr</div>
@@ -63,43 +45,9 @@
           <img src="img/product-images/Brezzel-cu-crema-de-branza.jpg" alt="Brezzel cu cremă de brânză" />
           <div class="gradient"></div>
         </div>
-        <div class="product">
-          <div class="name">Bacon uscat</div>
-          <div class="weight">80gr</div>
-          <div class="price">17 RON</div>
-          <img src="img/product-images/Bacon-uscat.jpg" alt="Brezzel cu cremă de brânză" />
-          <div class="gradient"></div>
-        </div>
-        <div class="product">
-          <div class="name">Urechiușe de porc prăjite și picante</div>
-          <div class="weight">100gr</div>
-          <div class="price">24 RON</div>
-        </div>
-        <div class="product">
-          <div class="name">Cârnăciori de casă din carne de mistreț</div>
-          <div class="weight">65gr</div>
-          <div class="price">19.5 RON</div>
-        </div>
-        <div class="product">
-          <div class="name">Pâine cu untură, bacon și ceapă verde</div>
-          <div class="weight">100gr</div>
-          <div class="price">14 RON</div>
-          <img src="img/product-images/Paine-cu-untura-ceapa-verde-si-bacun.jpg" alt="Brezzel cu cremă de brânză" />
-          <div class="gradient"></div>
-        </div>
-        <div class="product">
-          <div class="name">Pate de casă cu ridichi</div>
-          <div class="weight">150gr</div>
-          <div class="price">15 RON</div>
-        </div>
-        <div class="product">
-          <div class="name">Pastă de jumări cu ceapă verde</div>
-          <div class="weight">100gr</div>
-          <div class="price">15 RON</div>
-        </div>
+        <% }); }); %>
       </div>
     </div>
-    <input type="hidden" id="targetRestaurant" value="<%= user.username %>"
   </body>
   <script src="js/smoothscroll.js"></script>
   <script src="js/app.js"></script>

@@ -3,67 +3,6 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.pre-menu {
-  background: #fff;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px 0;
-  height: 150vh;
-}
-
-.pre-menu ~ .menu {
-  display: none;
-}
-
-.pre-menu.loading > * {
-  opacity: 0.3;
-}
-
-.pre-menu h1 {
-  font-size: 28px;
-  padding: 0 32px;
-  line-height: 30px;
-}
-
-.pre-menu p {
-  text-align: center;
-  padding: 0 32px;
-  margin-bottom: 40px;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 0;
-}
-
-.pre-menu .restaurant-logo {
-  width: 80px;
-}
-
-.pre-menu input {
-  margin-bottom: 16px;
-  padding: 7px 10px;
-  width: 50%;
-  max-width: 200px;
-}
-
-.pre-menu input[type='button'] {
-  margin-top: 32px;
-  padding: 10px;
-  text-transform: uppercase;
-}
-
-.pre-menu .label {
-  width: 50vw;
-  max-width: 200px;
-  margin-bottom: 16px;
-  padding: 5px 10px;
-  font-size: 11;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 0;
-}
-
 .title-wrapper {
   height: 100px;
   display: flex;
@@ -75,18 +14,23 @@ body {
 
 h1 {
   font-weight: 300;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   line-height: 42px;
+  color: #fff;
+  margin-bottom: 0;
+  margin-top: -16px;
 }
 
 h2 {
   text-transform: uppercase;
   font-weight: 300;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   margin-top: 0;
   letter-spacing: 5px;
-  font-size: 28px;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
 .cover-wrapper {
@@ -138,14 +82,6 @@ h2 {
 
 .restaurant-logo-wrapper img {
   height: 100%;
-}
-
-.title {
-  color: #fff;
-}
-
-.subtitle {
-  color: #fff;
 }
 
 ::placeholder {

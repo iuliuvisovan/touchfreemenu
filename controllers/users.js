@@ -1,6 +1,8 @@
 const { body, validationResult } = require('express-validator/check');
 const { login, createAuthToken } = require('../services/auth');
 const User = require('../models/user');
+const Category = require('../models/category');
+const Product = require('../models/product');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
@@ -12,6 +14,7 @@ AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: pr
 
 exports.login = (req, res, next) => {
   const result = validationResult(req);
+
   if (!result.isEmpty()) {
     const errors = result.array({ onlyFirstError: true });
     return res.status(422).json({ errors });
@@ -143,48 +146,6 @@ exports.updatePdfMenuUrl = async (req, res, next) => {
   }
 };
 
-exports.showPdfMenu = async (req, res, next) => {
-  try {
-    const { restaurantSlug } = req.params;
-
-    const user = await User.findOne({ username: restaurantSlug });
-
-    if (!user) {
-      return res.redirect('https://touchfreemenu.ro/');
-    }
-
-    const isIphone = req.headers['user-agent'].includes('(iPhone;');
-
-    if (isIphone) {
-      var s3 = new AWS.S3();
-
-      s3.getObject(
-        {
-          Bucket: process.env.AWS_BUCKET_NAME,
-          Key: user.pdfKey,
-        },
-        (error, data) => {
-          if (error === null) {
-            res.set({
-              'Content-Type': 'application/pdf',
-            });
-
-            return res.send(data.Body);
-          } else {
-            return res.status(500).send(error);
-          }
-        }
-      );
-    } else {
-      return res.render('pdf-menu', {
-        pdfUrl: user.pdfUrl,
-      });
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
 exports.downloadQrCode = async (req, res, next) => {
   try {
     const { restaurantSlug } = req.params;
@@ -204,10 +165,20 @@ exports.downloadQrCode = async (req, res, next) => {
 exports.showMenuIfValidSlug = async (req, res, next) => {
   const { restaurantSlug } = req.params;
 
-  const user = await User.findOne({ username: restaurantSlug });
+  const restaurant = await User.findOne({ username: restaurantSlug });
 
-  if (user) {
-    return res.render('web-menu', { user });
+  if (restaurant) {
+    //TODO: Add restaurantSlug as filter
+    const products = await Product.find({});
+    const categories = await Category.find({});
+
+    categories.forEach((x) => {
+      x.products = products.filter((x) => x.categoryId == x.id);
+    });
+
+    restaurant.categories = categories;
+
+    return res.render('web-menu', { restaurant });
   } else {
     next();
   }
