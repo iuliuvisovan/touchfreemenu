@@ -1,74 +1,69 @@
 polyfill();
 
-document.querySelectorAll('.category-button').forEach((x) => {
-  x.addEventListener('click', function () {
-    if (this.classList.contains('active')) {
-      this.classList.remove('active');
-    } else {
-      this.classList.add('active');
-    }
-  });
-});
+function app() {
+  setupSearchInput();
+  setupProductTaps();
+}
+app();
 
-document.querySelectorAll('#searchInput').forEach((x) => {
+function setupSearchInput() {
   setTimeout(() => {
-    x.addEventListener('focus', function () {
+    const searchInput = document.querySelector('#searchInput');
+
+    searchInput.addEventListener('focus', () => {
       window.scrollTo({ top: 198, behavior: 'smooth' });
     });
+    searchInput.addEventListener('keyup', () => {
+      search(searchInput.value);
+    });
   }, 300);
-});
+}
 
-const dateInput = document.querySelector('#dateTime');
-const date = new Date();
-dateInput.value = `${(date.getDate() + '').padStart(2, '0')}.${(date.getMonth() + 1 + '').padStart(2, '0')} @ ${(date.getHours() + '').padStart(2, '0')}:${(date.getMinutes() + '').padStart(2, '0')}`;
+function search(query) {
+  document.querySelector('.menu').classList[query ? 'add' : 'remove']('searching');
 
-document.querySelectorAll('.field').forEach((x) => {
-  x.addEventListener('keyup', (e) => {
-    checkFormValidity();
+  document.querySelectorAll('.product').forEach((product) => {
+    const isMatch = product.innerHTML.toLowerCase().normalize('NFKD').replace(/[^\w]/g, '').includes(query.toLowerCase().normalize('NFKD').replace(/[^\w]/g, ''));
+
+    if (!isMatch) {
+      if (!product.classList.contains('hidden')) {
+        product.classList.add('hidden');
+      }
+    } else {
+      product.classList.remove('hidden');
+    }
   });
-});
+}
 
-const submitButton = document.querySelector('#seeMenuButton');
-submitButton.addEventListener('click', async () => {
-  document.querySelector('.pre-menu').classList.add('loading');
+function clearInput() {
+  document.querySelector('#searchInput').value = '';
+  search('');
+}
 
-  const suppliedName = document.querySelector('#fullName').value;
-  const suppliedPhoneNumber = document.querySelector('#phoneNumber').value;
-
-  await fetch('/api/covid-questionnaire', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name: suppliedName, phoneNumber: suppliedPhoneNumber, targetRestaurant: document.getElementById('targetRestaurant').value }),
+function setupProductTaps() {
+  document.querySelectorAll('.product').forEach((product) => {
+    product.addEventListener('touchend', function () {
+      const isTapped = product.classList.contains('tapped');
+      document.querySelectorAll('.tapped').forEach((tappedProduct) => {
+        tappedProduct.classList.remove('tapped');
+      });
+      if (isTapped) {
+        product.classList.remove('tapped');
+      } else {
+        product.classList.add('tapped');
+      }
+    });
   });
+}
 
-  document.querySelector('.pre-menu').remove();
-  window.scrollTo(0, 0);
-});
-
-function checkFormValidity() {
-  const suppliedName = document.querySelector('#fullName').value;
-  const suppliedPhoneNumber = document.querySelector('#phoneNumber').value;
-
-  if (suppliedName.length < 2) {
-    submitButton.disabled = true;
-
-    return;
-  }
-
-  if (suppliedPhoneNumber.length < 8) {
-    submitButton.disabled = true;
-
-    return;
-  }
-
-  if (!/^[0-9\s\+]+$/.test(suppliedPhoneNumber)) {
-    submitButton.disabled = true;
-
-    return;
-  }
-
-  submitButton.disabled = false;
+function setupCategoryButtons() {
+  document.querySelectorAll('.category-button').forEach((x) => {
+    x.addEventListener('click', function () {
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+      } else {
+        this.classList.add('active');
+      }
+    });
+  });
 }

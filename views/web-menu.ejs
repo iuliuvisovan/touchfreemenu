@@ -24,9 +24,12 @@
         <h2 class="subtitle">Meniu</h2>
       </div>
       <div class="search-wrapper">
-        <input id="searchInput" type="text" placeholder="Caută" />
         <div class="search-icon">
           <i class="fas fa-search"></i>
+        </div>
+        <input id="searchInput" type="text" placeholder="Caută" />
+        <div onclick="clearInput()" id="clearButton" class="clear-icon">
+          <i class="fas fa-times"></i>
         </div>
       </div>
       <!-- <div class="categories-wrapper">
@@ -41,8 +44,15 @@
           <% category.products.forEach(function(product) { %>
           <div class="product">
             <div class="content">
+              <% if(product.imageUrl) { %>
+              <div class="expanded-photo">
+                <img src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+              </div>
+              <% } %>
               <div class="name"><%- product.name %></div>
+              <% if(product.ingredients?.length) { %>
               <div class="description"><%- product.ingredients %></div>
+              <% } %>
               <div class="weight"><%- product.quantities %></div>
               <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>
               <% if(product.isDiscounted) { %>
@@ -50,7 +60,7 @@
               <% } %>
             </div>
             <% if(product.imageUrl) { %>
-            <img class="photo" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+            <img class="photo collapsed" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
             <% } %>
             <div class="gradient"></div>
           </div>
