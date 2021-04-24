@@ -29,23 +29,34 @@
           <i class="fas fa-search"></i>
         </div>
       </div>
-      <div class="categories-wrapper">
+      <!-- <div class="categories-wrapper">
         <% restaurant.categories.forEach(function(category) { %>
         <div class="category-button"><%= category.name %></div>
         <% }); %>
-      </div>
+      </div> -->
       <div class="products-wrapper">
         <% restaurant.categories.forEach(function(category) { %>
-        <div class="category-label"><%- category.name %></div>
-        <% category.products.forEach(function(product) { %>
-        <div class="product">
-          <div class="name">Brezzel cu cremă de brânză</div>
-          <div class="weight">150gr</div>
-          <div class="price">15 RON</div>
-          <img src="img/product-images/Brezzel-cu-crema-de-branza.jpg" alt="Brezzel cu cremă de brânză" />
-          <div class="gradient"></div>
+        <div class="category">
+          <div class="category-label"><%- category.name %></div>
+          <% category.products.forEach(function(product) { %>
+          <div class="product">
+            <div class="content">
+              <div class="name"><%- product.name %></div>
+              <div class="description"><%- product.ingredients %></div>
+              <div class="weight"><%- product.quantities %></div>
+              <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>
+              <% if(product.isDiscounted) { %>
+              <div class="discounted-price"><%- product.discountedPrice %> RON</div>
+              <% } %>
+            </div>
+            <% if(product.imageUrl) { %>
+            <img class="photo" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+            <% } %>
+            <div class="gradient"></div>
+          </div>
+          <% }); %>
         </div>
-        <% }); }); %>
+        <% }); %>
       </div>
     </div>
   </body>

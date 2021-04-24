@@ -143,15 +143,23 @@ h2 {
   background-color: #f7c524;
 }
 
+.category {
+  padding: 8px;
+  padding-bottom: 32px;
+}
+
+.category:nth-child(even) {
+  background-color: #77777710;
+}
+
 .category-label {
   margin-bottom: 8px;
   margin-left: 13px;
+  margin-top: 12px;
 }
 
 .products-wrapper {
-  padding: 16px;
-  display: flex;
-  flex-wrap: wrap;
+  padding-top: 0;
 }
 
 .product {
@@ -159,23 +167,38 @@ h2 {
   position: relative;
   border-radius: 8px;
   padding: 10px 12px;
-  margin-right: 8px;
   margin-bottom: 8px;
   color: #221818;
   transition: all 0.2s ease-in-out;
   border: 1px solid #2218181a;
-  width: 100%;
+  width: calc(100% - 24px);
   overflow: hidden;
+  background-color: #fff;
 }
 
 .product .name {
   font-weight: bold;
   font-size: 18px;
+  text-shadow: 2px 2px 4px #fff;
+}
+
+.product .description {
+  font-size: 14px;
+  display: none;
+  margin-top: 4px;
+  text-shadow: 1px ​1px 2px #fff;
+}
+
+.product:hover .description {
+  display: block;
+}
+.product:hover .photo {
+  opacity: 0.6;
 }
 
 .product .weight {
-  font-weight: #22181811;
   font-size: 14px;
+  margin-top: 8px;
 }
 
 .product .price {
@@ -184,26 +207,43 @@ h2 {
   font-size: 18px;
 }
 
-.product img {
+.product .price.obsolete {
+  text-decoration: line-through;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.product .discounted-price {
+  color: #f44336;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.product .content {
+  position: relative;
+  z-index: 2;
+}
+
+.product .photo {
   font-weight: bold;
   font-size: 18px;
   float: right;
-  height: 170px;
-  margin-top: -20px;
-  margin-right: -20px;
+  height: 110%;
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -2;
+  top: -5%;
+  left: 55vw;
+  z-index: 0;
+  min-width: 41vw;
 }
 
 .product .gradient {
   width: 100vw;
-  height: 209px;
+  height: 180px;
   position: absolute;
-  left: -13px;
+  left: -1vw;
   bottom: -41px;
-  background: linear-gradient(#fff, #ffff, #fff0);
-  transform: rotate(-46deg);
-  z-index: -1;
+  background: linear-gradient(#fff, #ffff, #ffff, #fff0);
+  transform: rotate(-80deg);
+  z-index: 1;
 }

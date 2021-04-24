@@ -169,11 +169,11 @@ exports.showMenuIfValidSlug = async (req, res, next) => {
 
   if (restaurant) {
     //TODO: Add restaurantSlug as filter
-    const products = await Product.find({});
-    const categories = await Category.find({});
+    const products = await Product.find({}).lean();
+    const categories = await Category.find({}).lean();
 
-    categories.forEach((x) => {
-      x.products = products.filter((x) => x.categoryId == x.id);
+    categories.forEach((category) => {
+      category.products = products.filter((y) => y.categoryId == category._id);
     });
 
     restaurant.categories = categories;
