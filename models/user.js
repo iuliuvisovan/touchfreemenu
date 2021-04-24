@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema(
   {
@@ -32,11 +31,6 @@ userSchema.options.toJSON.transform = (doc, ret) => {
   delete obj.password;
   return obj;
 };
-
-userSchema.pre('save', async function (next) {
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
 
 userSchema.methods.isValidPassword = async function (password) {
   return password == this.password;

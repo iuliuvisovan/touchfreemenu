@@ -109,7 +109,7 @@ exports.validate = (method) => {
 };
 
 exports.getCurrentUser = (req, res, next) => {
-  res.status(200).json(req.fullUser);
+  res.status(200).json(req.user);
 };
 
 exports.uploadFileToS3 = multer({
