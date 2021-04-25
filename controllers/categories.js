@@ -1,9 +1,10 @@
 const Category = require('../models/category');
 const Product = require('../models/product');
+const User = require('../models/user');
 
 exports.create = async (req, res, next) => {
   try {
-    const { name } = req.body;
+    const { name, userId } = req.body;
 
     if (!name.trim().length) {
       return res.status(422).json({ message: 'Cannot create category with no name.' });
@@ -11,9 +12,13 @@ exports.create = async (req, res, next) => {
 
     const highestCategoryIndex = (await Category.findOne().sort({ index: -1 }))?.index || 0;
 
-    const category = await Category.create({ name, index: highestCategoryIndex + 1, createdAt: new Date(), updatedAt: new Date() });
-
-    res.status(201).json(category);
+    const user = await User.findById(userId);
+    if (user) {
+      const category = await Category.create({ name, index: highestCategoryIndex + 1, userId, createdAt: new Date(), updatedAt: new Date() });
+      res.status(201).json(category);
+    } else {
+      return res.status(404).json({ message: 'User not found.' });
+    }
   } catch (err) {
     next(err);
   }
@@ -22,11 +27,6 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
   try {
     const categories = await Category.find({});
-
-    categories.forEach((x) => {
-      x.productCount = 23;
-    });
-
     res.status(200).json(categories);
   } catch (err) {
     next(err);
@@ -63,9 +63,9 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name } = req.body;
+    const { id, name, userId } = req.body;
 
-    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: { name } }, { new: true });
+    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: { name, userId } }, { new: true });
 
     res.status(201).json(updatedCategory);
   } catch (err) {

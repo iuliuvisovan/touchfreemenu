@@ -2,14 +2,16 @@ const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     index: { type: Number },
+    userId: { type: String, required: true },
     createdAt: Date,
     updatedAt: Date,
   },
   { collation: { locale: 'en', strength: 1 } }
 );
 
+categorySchema.index({ 'name': 1, 'userId': 1 }, { 'unique': true });
 categorySchema.set('toJSON', { getters: true });
 categorySchema.options.toJSON.transform = (doc, ret) => {
   const obj = { ...ret };

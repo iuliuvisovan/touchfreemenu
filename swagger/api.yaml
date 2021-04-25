@@ -134,10 +134,13 @@ paths:
             schema:
               required:
                 - name
+                - userId
               properties:
                 name: 
                   type: string
                   minLength: 1
+                userId: 
+                  type: string  
       responses:
         '200':
           description: Successful response
@@ -145,6 +148,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category' 
+        '404':
+          description: User has not been found        
     put:
       tags:
         - Categories
@@ -159,13 +164,15 @@ paths:
             schema:
               required:
                 - id
-                - name
+                - userId
               properties:
                 id: 
                   type: string
                 name: 
                   type: string
                   minLength: 1
+                userId:
+                  type: string
       responses:
         '200':
           description: Successful response
@@ -529,6 +536,8 @@ components:
           type: string
         index:
           type: number
+        userId:
+          type: string  
         createdAt:
           type: string
           format: date-time
