@@ -407,6 +407,7 @@ components:
         - name
         - email
         - logoUrl
+        - coverPhotoUrl
         - city
         - coords
       properties:
@@ -425,6 +426,8 @@ components:
           type: string
         logoUrl:
           type: string
+        coverPhotoUrl:
+          type: string  
         city:
           type: string
         coords:
@@ -503,6 +506,8 @@ components:
         email:
           type: string
         logoUrl:
+          type: string
+        coverPhotoUrl:
           type: string
         city:
           type: string
