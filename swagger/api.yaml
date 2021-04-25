@@ -468,6 +468,8 @@ components:
         - name
         - categoryId
       properties:
+        categoryId:
+          type: string
         name:
           type: string
         description:
@@ -482,8 +484,6 @@ components:
           type: boolean
         discountedPrice:
           type: integer
-        categoryId:
-          type: string
   schemas:
     RequestDemo:
       properties:
@@ -542,6 +542,10 @@ components:
           type: string
     Product:
       properties:
+        userId:
+          type: string
+        categoryId:
+          type: string
         name:
           type: string
         description:
@@ -560,8 +564,6 @@ components:
           type: boolean
         discountedPrice:
           type: integer
-        categoryId:
-          type: string
         index:
           type: number
         createdAt:

@@ -32,11 +32,13 @@ exports.uploadImageToS3 = multer({
 
 exports.create = async (req, res, next) => {
   try {
-    const { name, ingredients, quantities, price, discountedPrice, categoryId, isDiscounted, description } = req.body;
+    const { name, ingredients, quantities, price, categoryId, discountedPrice, isDiscounted, description } = req.body;
 
     const highestProductIndex = (await Product.findOne({ categoryId }).sort({ index: -1 }))?.index || 0;
 
     const product = await Product.create({
+      userId: req.user.id,
+      categoryId,
       name,
       description,
       imageUrl: req.file?.location || '',
@@ -46,7 +48,6 @@ exports.create = async (req, res, next) => {
       price,
       isDiscounted,
       discountedPrice,
-      categoryId,
       index: highestProductIndex + 1,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -60,7 +61,7 @@ exports.create = async (req, res, next) => {
 
 exports.getAll = async (req, res, next) => {
   try {
-    const products = await Product.find({});
+    const products = await Product.find({ userId: req.user.id });
     res.status(200).json(products);
   } catch (err) {
     next(err);
@@ -114,7 +115,7 @@ exports.edit = async (req, res, next) => {
       isDiscounted,
       updatedAt: new Date(),
     };
-    Object.keys(updatedFields).forEach(key => updatedFields[key] === undefined && delete updatedFields[key])
+    Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
 
     //Image has changed
     if (!imageUrl) {
