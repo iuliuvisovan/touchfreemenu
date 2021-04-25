@@ -350,45 +350,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product' 
-  /api/covid-questionnaire:
-    post:
-      tags:
-        - Covid Questionnaire
-      summary: Submit a covid questionnaire
-      operationId: submitQuestionnaire
-      security:
-        - auth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/requestBodies/CovidQuestionnaire' 
-      responses:
-        '201':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CovidQuestionnaire' 
-  /api/toggle-covid-questionnaire:
-    post:
-      tags:
-        - Covid Questionnaire
-      summary: Toggle covid questionnaire
-      operationId: toggleQuestionnaire
-      security:
-        - auth: []
-      responses:
-        '201':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                properties:
-                  newValue:
-                    type: boolean
-                    description: Describes if covid questionnaire is enabled
   /api/pdf-menu:
     post:
       tags:
@@ -519,21 +480,6 @@ components:
           type: integer
         categoryId:
           type: string
-    CovidQuestionnaire:
-      required:
-        - targetRestaurant
-      properties:
-        targetRestaurant:
-          type: string
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        email:
-          type: string
-          format: email
-        tableSeated:
-          type: string 
   schemas:
     RequestDemo:
       properties:
@@ -615,22 +561,4 @@ components:
           type: string
           format: date-time
         id:
-          type: string
-    CovidQuestionnaire:
-      properties:
-        targetRestaurant:
-          type: string
-        date:
-          type: string
-          format: date-time  
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        email:
-          type: string
-          format: email
-        tableSeated:
-          type: string
-        ip:
           type: string

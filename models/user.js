@@ -17,8 +17,7 @@ const userSchema = new mongoose.Schema(
     coords: {
       latitude: Number,
       longitude: Number,
-    },
-    isCovidQuestionnaireEnabled: Boolean
+    }
   },
   { collation: { locale: 'en', strength: 1 } }
 );

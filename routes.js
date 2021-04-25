@@ -1,5 +1,4 @@
 const demoRequests = require('./controllers/demoRequests');
-const covidQuestionnaires = require('./controllers/covidQuestionnaires');
 const users = require('./controllers/users');
 const categories = require('./controllers/categories');
 const products = require('./controllers/products');
@@ -17,9 +16,6 @@ router.post('/change-password', auth.withCurrentUser, users.changePassword);
 router.post('/register', users.validate(), users.register);
 router.get('/get-current-user', auth.withCurrentUser, users.getCurrentUser);
 router.post('/pdf-menu', auth.withCurrentUser, users.uploadFileToS3, users.updatePdfMenuUrl);
-
-router.post('/covid-questionnaire', covidQuestionnaires.submitQuestionnaire);
-router.post('/toggle-covid-questionnaire', auth.withCurrentUser, covidQuestionnaires.toggle);
 
 router.get('/categories', auth.withCurrentUser, categories.getAll);
 router.post('/categories', auth.withCurrentUser, categories.create);
