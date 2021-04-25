@@ -173,10 +173,10 @@ exports.showMenuIfValidSlug = async (req, res, next) => {
     const categories = await Category.find({}).lean();
 
     categories.forEach((category) => {
-      category.products = products.filter((y) => y.categoryId == category._id);
+      category.products = products.filter((y) => y.categoryId == category._id).sort((a, b) => a.index - b.index);
     });
 
-    restaurant.categories = categories;
+    restaurant.categories = categories.sort((a, b) => a.index - b.index);
 
     return res.render('web-menu', { restaurant });
   } else {

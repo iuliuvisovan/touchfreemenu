@@ -7,14 +7,12 @@
     "setupTestFrameworkScriptFile": "./test/setup.js"
   },
   "engines": {
-    "node": "14.9.0"
+    "node": "15.7.0"
   },
   "scripts": {
     "dev": "nodemon ./index.js",
     "start": "node index.js",
-    "test": "jest",
-    "server": "nodemon",
-    "client": "cd admin && npm start"
+    "test": "jest"
   },
   "dependencies": {
     "aws-sdk": "^2.752.0",
