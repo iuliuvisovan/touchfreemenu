@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true },
     logoUrl: String,
+    coverPhotoUrl: { type: String, required: true },
     pdfUrl: String,
     pdfKey: String,
     pdfUploadDate: Date,
@@ -17,8 +18,7 @@ const userSchema = new mongoose.Schema(
     coords: {
       latitude: Number,
       longitude: Number,
-    },
-    isCovidQuestionnaireEnabled: Boolean
+    }
   },
   { collation: { locale: 'en', strength: 1 } }
 );

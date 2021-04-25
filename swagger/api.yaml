@@ -134,10 +134,13 @@ paths:
             schema:
               required:
                 - name
+                - userId
               properties:
                 name: 
                   type: string
                   minLength: 1
+                userId: 
+                  type: string  
       responses:
         '200':
           description: Successful response
@@ -145,6 +148,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category' 
+        '404':
+          description: User has not been found        
     put:
       tags:
         - Categories
@@ -159,13 +164,15 @@ paths:
             schema:
               required:
                 - id
-                - name
+                - userId
               properties:
                 id: 
                   type: string
                 name: 
                   type: string
                   minLength: 1
+                userId:
+                  type: string
       responses:
         '200':
           description: Successful response
@@ -350,45 +357,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product' 
-  /api/covid-questionnaire:
-    post:
-      tags:
-        - Covid Questionnaire
-      summary: Submit a covid questionnaire
-      operationId: submitQuestionnaire
-      security:
-        - auth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/requestBodies/CovidQuestionnaire' 
-      responses:
-        '201':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CovidQuestionnaire' 
-  /api/toggle-covid-questionnaire:
-    post:
-      tags:
-        - Covid Questionnaire
-      summary: Toggle covid questionnaire
-      operationId: toggleQuestionnaire
-      security:
-        - auth: []
-      responses:
-        '201':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                properties:
-                  newValue:
-                    type: boolean
-                    description: Describes if covid questionnaire is enabled
   /api/pdf-menu:
     post:
       tags:
@@ -446,6 +414,7 @@ components:
         - name
         - email
         - logoUrl
+        - coverPhotoUrl
         - city
         - coords
       properties:
@@ -464,6 +433,8 @@ components:
           type: string
         logoUrl:
           type: string
+        coverPhotoUrl:
+          type: string  
         city:
           type: string
         coords:
@@ -507,6 +478,8 @@ components:
       properties:
         name:
           type: string
+        description: 
+          type: string  
         ingredients:
           type: string
         quantities:
@@ -519,21 +492,6 @@ components:
           type: integer
         categoryId:
           type: string
-    CovidQuestionnaire:
-      required:
-        - targetRestaurant
-      properties:
-        targetRestaurant:
-          type: string
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        email:
-          type: string
-          format: email
-        tableSeated:
-          type: string 
   schemas:
     RequestDemo:
       properties:
@@ -558,6 +516,8 @@ components:
           type: string
         logoUrl:
           type: string
+        coverPhotoUrl:
+          type: string
         city:
           type: string
         coords:
@@ -578,6 +538,8 @@ components:
           type: string
         index:
           type: number
+        userId:
+          type: string  
         createdAt:
           type: string
           format: date-time
@@ -590,6 +552,8 @@ components:
       properties:
         name:
           type: string
+        description: 
+          type: string  
         imageUrl:
           type: string
         imageKey:
@@ -615,22 +579,4 @@ components:
           type: string
           format: date-time
         id:
-          type: string
-    CovidQuestionnaire:
-      properties:
-        targetRestaurant:
-          type: string
-        date:
-          type: string
-          format: date-time  
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        email:
-          type: string
-          format: email
-        tableSeated:
-          type: string
-        ip:
           type: string

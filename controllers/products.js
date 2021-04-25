@@ -32,12 +32,13 @@ exports.uploadImageToS3 = multer({
 
 exports.create = async (req, res, next) => {
   try {
-    const { name, ingredients, quantities, price, discountedPrice, categoryId, isDiscounted } = req.body;
+    const { name, ingredients, quantities, price, discountedPrice, categoryId, isDiscounted, description } = req.body;
 
     const highestProductIndex = (await Product.findOne({ categoryId }).sort({ index: -1 }))?.index || 0;
 
     const product = await Product.create({
       name,
+      description,
       imageUrl: req.file?.location || '',
       imageKey: req.uploadedImageKey || '',
       ingredients,
@@ -60,11 +61,6 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
   try {
     const products = await Product.find({});
-
-    products.forEach((x) => {
-      x.productCount = 23;
-    });
-
     res.status(200).json(products);
   } catch (err) {
     next(err);
@@ -103,12 +99,13 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name, ingredients, quantities, imageUrl, price, discountedPrice, categoryId, isDiscounted } = req.body;
+    const { id, name, ingredients, quantities, imageUrl, price, discountedPrice, categoryId, isDiscounted, description } = req.body;
 
     const originalProduct = await Product.findById(id);
 
     const updatedFields = {
       name,
+      description,
       ingredients,
       quantities,
       price,
@@ -117,6 +114,7 @@ exports.edit = async (req, res, next) => {
       isDiscounted,
       updatedAt: new Date(),
     };
+    Object.keys(updatedFields).forEach(key => updatedFields[key] === undefined && delete updatedFields[key])
 
     //Image has changed
     if (!imageUrl) {
