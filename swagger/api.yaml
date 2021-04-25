@@ -478,6 +478,8 @@ components:
       properties:
         name:
           type: string
+        description: 
+          type: string  
         ingredients:
           type: string
         quantities:
@@ -550,6 +552,8 @@ components:
       properties:
         name:
           type: string
+        description: 
+          type: string  
         imageUrl:
           type: string
         imageKey:
