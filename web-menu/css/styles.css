@@ -306,3 +306,7 @@ h2 {
 .product.hidden {
   display: none;
 }
+
+highlighted {
+  color: #8bc34a;
+}

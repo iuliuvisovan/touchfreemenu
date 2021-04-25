@@ -23,7 +23,15 @@ function search(query) {
   document.querySelector('.menu').classList[query ? 'add' : 'remove']('searching');
 
   document.querySelectorAll('.product').forEach((product) => {
-    const isMatch = product.innerHTML.toLowerCase().normalize('NFKD').replace(/[^\w]/g, '').includes(query.toLowerCase().normalize('NFKD').replace(/[^\w]/g, ''));
+    const normalizedQuery = query.toLowerCase().normalize('NFKD').replace(/[^\w]/g, '');
+    const cleanedProductHtml = product.innerHTML
+      .toLowerCase()
+      .replace('<highlighted>', '')
+      .replace('</highlighted>', '')
+      .normalize('NFKD')
+      .replace(/[^\w]/g, '');
+
+    const isMatch = cleanedProductHtml.includes(normalizedQuery);
 
     if (!isMatch) {
       if (!product.classList.contains('hidden')) {
@@ -31,8 +39,34 @@ function search(query) {
       }
     } else {
       product.classList.remove('hidden');
+
+      highlightFoundText(normalizedQuery, product.querySelector('.name'));
+      highlightFoundText(normalizedQuery, product.querySelector('.description'));
     }
   });
+}
+
+function highlightFoundText(normalizedQuery, productNameOrDescription) {
+  if (!productNameOrDescription?.innerHTML) {
+    return;
+  }
+
+  const cleanedHTML = productNameOrDescription.innerHTML.replace('<highlighted>', '').replace('</highlighted>', '');
+
+  const normalizedHtml = cleanedHTML.toLowerCase();
+  const indexOfMatch = normalizedHtml.indexOf(normalizedQuery);
+
+  if (indexOfMatch < 0) {
+    productNameOrDescription.innerHTML = cleanedHTML;
+
+    return;
+  }
+
+  const beforeMatchedString = cleanedHTML.substring(0, indexOfMatch);
+  const matchedString = cleanedHTML.substring(indexOfMatch, indexOfMatch + normalizedQuery.length);
+  const afterMatchedString = cleanedHTML.substring(indexOfMatch + normalizedQuery.length);
+
+  productNameOrDescription.innerHTML = `${beforeMatchedString}<highlighted>${matchedString}</highlighted>${afterMatchedString}`;
 }
 
 function clearInput() {

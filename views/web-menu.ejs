@@ -38,12 +38,12 @@
           <div class="category-label"><%- category.name %></div>
           <% category.products.forEach(function(product) { %>
           <div class="product">
+            <% if(product.imageUrl) { %>
+            <div class="expanded-photo">
+              <img src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+            </div>
+            <% } %>
             <div class="content">
-              <% if(product.imageUrl) { %>
-              <div class="expanded-photo">
-                <img src="<%- product.imageUrl %>" alt="<%- product.name %>" />
-              </div>
-              <% } %>
               <div class="name"><%- product.name %></div>
               <% if(product.ingredients?.length) { %>
               <div class="description"><%- product.ingredients %></div>
