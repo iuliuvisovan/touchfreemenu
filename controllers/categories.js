@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 exports.create = async (req, res, next) => {
   try {
-    const { name, userId } = req.body;
+    const { name } = req.body;
 
     if (!name.trim().length) {
       return res.status(422).json({ message: 'Cannot create category with no name.' });
@@ -12,13 +12,14 @@ exports.create = async (req, res, next) => {
 
     const highestCategoryIndex = (await Category.findOne().sort({ index: -1 }))?.index || 0;
 
-    const user = await User.findById(userId);
-    if (user) {
-      const category = await Category.create({ name, index: highestCategoryIndex + 1, userId, createdAt: new Date(), updatedAt: new Date() });
-      res.status(201).json(category);
-    } else {
-      return res.status(404).json({ message: 'User not found.' });
-    }
+    const category = await Category.create({
+      name,
+      index: highestCategoryIndex + 1,
+      userId: req.user.id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    res.status(201).json(category);
   } catch (err) {
     next(err);
   }
@@ -63,9 +64,9 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name, userId } = req.body;
+    const { id, name } = req.body;
 
-    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: { name, userId } }, { new: true });
+    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: { name } }, { new: true });
 
     res.status(201).json(updatedCategory);
   } catch (err) {
