@@ -42,7 +42,7 @@ function clearInput() {
 
 function setupProductTaps() {
   document.querySelectorAll('.product').forEach((product) => {
-    product.addEventListener('touchend', function () {
+    product.addEventListener('click', function () {
       const isTapped = product.classList.contains('tapped');
       document.querySelectorAll('.tapped').forEach((tappedProduct) => {
         tappedProduct.classList.remove('tapped');
