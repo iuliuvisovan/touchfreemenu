@@ -117,6 +117,7 @@ h2 {
   justify-content: center;
   align-items: center;
   display: none;
+  cursor: pointer;
 }
 
 .menu.searching .clear-icon {
