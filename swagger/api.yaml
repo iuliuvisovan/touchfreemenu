@@ -349,34 +349,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-  /api/pdf-menu:
-    post:
-      tags:
-        - Pdf Menu
-      summary: Update pdf menu url
-      operationId: updatePdfMenuUrl
-      security:
-        - auth: []
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                properties:
-                  pdfUrl:
-                    type: string
-                    description: New pdf location
 components:
   securitySchemes:
     auth:

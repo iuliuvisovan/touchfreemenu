@@ -15,7 +15,6 @@ router.post('/login', users.login);
 router.post('/change-password', auth.withCurrentUser, users.changePassword);
 router.post('/register', users.validate(), users.register);
 router.get('/get-current-user', auth.withCurrentUser, users.getCurrentUser);
-router.post('/pdf-menu', auth.withCurrentUser, users.uploadFileToS3, users.updatePdfMenuUrl);
 
 router.get('/categories', auth.withCurrentUser, categories.getAll);
 router.post('/categories', auth.withCurrentUser, categories.create);
