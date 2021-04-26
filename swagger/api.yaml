@@ -165,6 +165,9 @@ paths:
                 name:
                   type: string
                   minLength: 1
+                nameEn:
+                  type: string
+                  minLength: 1
       responses:
         '200':
           description: Successful response
@@ -444,9 +447,11 @@ components:
           type: string
         name:
           type: string
+        nameEn:
+          type: string  
         description:
           type: string
-        ingredients:
+        descriptionEn:
           type: string
         quantities:
           type: string
@@ -500,6 +505,8 @@ components:
       properties:
         name:
           type: string
+        nameEn:
+          type: string  
         index:
           type: number
         userId:
@@ -520,13 +527,15 @@ components:
           type: string
         name:
           type: string
+        nameEn:
+          type: string  
         description:
           type: string
+        descriptionEn:
+          type: string  
         imageUrl:
           type: string
         imageKey:
-          type: string
-        ingredients:
           type: string
         quantities:
           type: string

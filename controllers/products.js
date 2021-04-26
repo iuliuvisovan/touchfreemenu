@@ -2,6 +2,7 @@ const Product = require('../models/product');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
+const { translate } = require('./utils');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.uploadImageToS3 = multer({
@@ -32,18 +33,21 @@ exports.uploadImageToS3 = multer({
 
 exports.create = async (req, res, next) => {
   try {
-    const { name, ingredients, quantities, price, categoryId, discountedPrice, isDiscounted, description } = req.body;
+    const { name, quantities, price, categoryId, discountedPrice, isDiscounted, description } = req.body;
 
     const highestProductIndex = (await Product.findOne({ categoryId }).sort({ index: -1 }))?.index || 0;
+    const nameEn = await translate(name);
+    const descriptionEn = await translate(description);
 
     const product = await Product.create({
       userId: req.user.id,
       categoryId,
       name,
+      nameEn,
       description,
+      descriptionEn,
       imageUrl: req.file?.location || '',
       imageKey: req.uploadedImageKey || '',
-      ingredients,
       quantities,
       price,
       isDiscounted,
@@ -100,14 +104,16 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name, ingredients, quantities, imageUrl, price, discountedPrice, categoryId, isDiscounted, description } = req.body;
+    const { id, name, nameEn, quantities, imageUrl, price,
+      discountedPrice, categoryId, isDiscounted, description, descriptionEn } = req.body;
 
     const originalProduct = await Product.findById(id);
 
     const updatedFields = {
       name,
+      nameEn,
       description,
-      ingredients,
+      descriptionEn,
       quantities,
       price,
       discountedPrice,

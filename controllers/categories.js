@@ -1,6 +1,6 @@
 const Category = require('../models/category');
 const Product = require('../models/product');
-const User = require('../models/user');
+const { translate } = require('./utils');
 
 exports.create = async (req, res, next) => {
   try {
@@ -11,9 +11,11 @@ exports.create = async (req, res, next) => {
     }
 
     const highestCategoryIndex = (await Category.findOne().sort({ index: -1 }))?.index || 0;
+    const nameEn = await translate(name);
 
     const category = await Category.create({
       name,
+      nameEn,
       index: highestCategoryIndex + 1,
       userId: req.user.id,
       createdAt: new Date(),
@@ -64,9 +66,15 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name } = req.body;
+    const { id, name, nameEn } = req.body;
 
-    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: { name } }, { new: true });
+    const updatedFields = {
+      name,
+      nameEn
+    };
+    Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
+
+    const updatedCategory = await Category.findByIdAndUpdate(id, { $set: updatedFields }, { new: true });
 
     res.status(201).json(updatedCategory);
   } catch (err) {
