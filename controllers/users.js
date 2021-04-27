@@ -3,11 +3,8 @@ const { login, createAuthToken } = require('../services/auth');
 const User = require('../models/user');
 const Category = require('../models/category');
 const Product = require('../models/product');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
 const moment = require('moment');
-const bcrypt = require('bcryptjs');
 var QRCode = require('qrcode');
 moment.locale('ro');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
@@ -113,39 +110,6 @@ exports.getCurrentUser = (req, res, next) => {
   res.status(200).json(req.user);
 };
 
-exports.uploadFileToS3 = multer({
-  storage: multerS3({
-    s3: new AWS.S3(),
-    acl: 'public-read',
-    bucket: process.env.AWS_BUCKET_NAME,
-    contentType: (req, file, cb) => {
-      cb(null, 'application/pdf');
-    },
-    key: (req, file, cb) => {
-      if (file.mimetype != 'application/pdf') {
-        cb({ type: 'invalidFileName', message: 'Te rog alege un fișier în format PDF.' });
-      } else {
-        const pdfKey = `pdf-menus/${req.user.username}/${file.originalname + '-' + new Date().toISOString()}.pdf`;
-
-        req.uploadedPdfKey = pdfKey;
-
-        cb(null, pdfKey);
-      }
-    },
-  }),
-}).single('menu');
-
-exports.updatePdfMenuUrl = async (req, res, next) => {
-  try {
-    const { location: pdfUrl, originalname: pdfOriginalName, size: pdfSize } = req.file;
-
-    await User.findByIdAndUpdate(req.user.id, { pdfUrl, pdfOriginalName, pdfSize, pdfKey: req.uploadedPdfKey, pdfUploadDate: new Date() });
-
-    res.status(200).json({ pdfUrl });
-  } catch (err) {
-    next(err);
-  }
-};
 
 exports.downloadQrCode = async (req, res, next) => {
   try {
