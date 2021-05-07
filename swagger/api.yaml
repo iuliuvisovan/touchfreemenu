@@ -319,9 +319,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  success:
-                    type: boolean
+                $ref: '#/components/schemas/Product'
   /api/products/move:
     post:
       tags:

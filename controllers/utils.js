@@ -13,5 +13,5 @@ exports.translate = async (input, from = 'ro', to = 'en') => {
         [translation] = await gcpClient.translate(input, { from, to });
     } catch (err) { }
 
-    return translation;
+    return translation?.[0]?.toUpperCase() + translation?.slice(1);
 };

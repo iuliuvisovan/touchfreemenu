@@ -104,8 +104,19 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name, nameEn, quantities, imageUrl, price,
-      discountedPrice, categoryId, isDiscounted, description, descriptionEn } = req.body;
+    const {
+      id,
+      name,
+      nameEn,
+      quantities,
+      imageUrl,
+      price,
+      discountedPrice,
+      categoryId,
+      isDiscounted,
+      description,
+      descriptionEn,
+    } = req.body;
 
     const originalProduct = await Product.findById(id);
 
@@ -154,12 +165,12 @@ exports.delete = async (req, res, next) => {
   try {
     const { productId } = req.params;
 
-    const productCategoryId = (await Product.findById(productId)).categoryId;
+    const productToRemove = await Product.findById(productId);
 
     await Product.findByIdAndRemove(productId);
-    await uniformizeProductIndexes(productCategoryId);
+    await uniformizeProductIndexes(productToRemove.categoryId);
 
-    res.status(200).json({ success: true });
+    res.status(200).json(productToRemove);
   } catch (err) {
     next(err);
   }
