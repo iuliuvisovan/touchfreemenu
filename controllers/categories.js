@@ -38,7 +38,7 @@ exports.getAll = async (req, res, next) => {
 
 exports.move = async (req, res, next) => {
   try {
-    const categories = await Category.find({});
+    const categories = await Category.find({ userId: req.user.id });
     const { categoryId, destinationIndex } = req.body;
 
     const draggedItem = categories.find((x) => x.id === categoryId);
@@ -70,7 +70,7 @@ exports.edit = async (req, res, next) => {
 
     const updatedFields = {
       name,
-      nameEn
+      nameEn,
     };
     Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
 
