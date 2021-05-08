@@ -21,13 +21,19 @@
           </div>
         </div>
         <h1 class="title"><%- restaurant.name %></h1>
-        <h2 class="subtitle">Meniu</h2>
+        <h2 language="RO" class="subtitle">Meniu</h2>
+        <h2 language="EN" class="subtitle">Menu</h2>
+        <div class="language-picker">
+          <span onclick="toggleLanguage()" language="RO">🇷🇴</span>
+          <span onclick="toggleLanguage()" language="EN">🇬🇧</span>
+        </div>
       </div>
       <div class="search-wrapper">
         <div class="search-icon">
           <i class="fas fa-search"></i>
         </div>
-        <input id="searchInput" type="text" placeholder="Caută" />
+        <input onkeyup="search(this.value)" onfocus="scrollToInput()" type="text" language="RO" placeholder="Caută" />
+        <input onkeyup="search(this.value)" onfocus="scrollToInput()" type="text" language="EN" placeholder="Search" />
         <div onclick="clearInput()" id="clearButton" class="clear-icon">
           <i class="fas fa-times"></i>
         </div>
@@ -35,18 +41,22 @@
       <div class="products-wrapper">
         <% restaurant.categories.forEach(function(category) { %>
         <div class="category">
-          <div class="category-label"><%- category.name %></div>
+          <div language="RO" class="category-label"><%- category.name %></div>
+          <div language="EN" class="category-label"><%- category.nameEn %></div>
           <% category.products.forEach(function(product) { %>
           <div class="product">
             <% if(product.imageUrl) { %>
             <div class="expanded-photo">
-              <img src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+              <img language="RO" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+              <img language="EN" src="<%- product.imageUrl %>" alt="<%- product.nameEn %>" />
             </div>
             <% } %>
             <div class="content">
-              <div class="name"><%- product.name %></div>
+              <div language="RO" class="name"><%- product.name %></div>
+              <div language="EN" class="name"><%- product.nameEn %></div>
               <% if(product.description?.length) { %>
-              <div class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
+              <div language="RO" class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
+              <div language="EN" class="description"><%- product.descriptionEn[0].toUpperCase() + product.descriptionEn.slice(1) %></div>
               <% } %>
               <div class="weight"><%- product.quantities %></div>
               <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>

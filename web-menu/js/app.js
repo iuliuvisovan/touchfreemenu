@@ -1,22 +1,26 @@
 polyfill();
 
 function app() {
-  setupSearchInput();
+  // setupSearchInput();
   setupProductTaps();
 }
 app();
 
-function setupSearchInput() {
-  setTimeout(() => {
-    const searchInput = document.querySelector('#searchInput');
+// function setupSearchInput() {
+//   setTimeout(() => {
+//     const searchInput = document.querySelector('#searchInput');
 
-    searchInput.addEventListener('focus', () => {
-      window.scrollTo({ top: 198, behavior: 'smooth' });
-    });
-    searchInput.addEventListener('keyup', () => {
-      search(searchInput.value);
-    });
-  }, 300);
+//     searchInput.addEventListener('focus', () => {
+//       window.scrollTo({ top: 198, behavior: 'smooth' });
+//     });
+//     searchInput.addEventListener('keyup', () => {
+//       search(searchInput.value);
+//     });
+//   }, 300);
+// }
+
+function scrollToInput() {
+  window.scrollTo({ top: 198, behavior: 'smooth' });
 }
 
 function search(query) {
@@ -26,8 +30,8 @@ function search(query) {
     const normalizedQuery = query.toLowerCase().normalize('NFKD').replace(/[^\w]/g, '');
     const cleanedProductHtml = product.innerHTML
       .toLowerCase()
-      .replace('<highlighted>', '')
-      .replace('</highlighted>', '')
+      .replace(/<highlighted>/g, '')
+      .replace(/<\/highlighted>/g, '')
       .normalize('NFKD')
       .replace(/[^\w]/g, '');
 
@@ -40,8 +44,12 @@ function search(query) {
     } else {
       product.classList.remove('hidden');
 
-      highlightFoundText(normalizedQuery, product.querySelector('.name'));
-      highlightFoundText(normalizedQuery, product.querySelector('.description'));
+      product.querySelectorAll('.name').forEach((productName) => {
+        highlightFoundText(normalizedQuery, productName);
+      });
+      product.querySelectorAll('.description').forEach((productDescription) => {
+        highlightFoundText(normalizedQuery, productDescription);
+      });
     }
   });
 }
@@ -51,7 +59,7 @@ function highlightFoundText(normalizedQuery, productNameOrDescription) {
     return;
   }
 
-  const cleanedHTML = productNameOrDescription.innerHTML.replace('<highlighted>', '').replace('</highlighted>', '');
+  const cleanedHTML = productNameOrDescription.innerHTML.replace(/<highlighted>/g, '').replace(/<\/highlighted>/g, '');
 
   const normalizedHtml = cleanedHTML.toLowerCase();
   const indexOfMatch = normalizedHtml.indexOf(normalizedQuery);
@@ -70,7 +78,9 @@ function highlightFoundText(normalizedQuery, productNameOrDescription) {
 }
 
 function clearInput() {
-  document.querySelector('#searchInput').value = '';
+  document.querySelectorAll('input').forEach((x) => {
+    x.value = '';
+  });
   search('');
 }
 
@@ -100,4 +110,13 @@ function setupCategoryButtons() {
       }
     });
   });
+}
+
+function toggleLanguage() {
+  const menu = document.querySelector('.menu');
+  if (menu.classList.contains('en')) {
+    menu.classList.remove('en');
+  } else {
+    menu.classList.add('en');
+  }
 }

@@ -317,3 +317,44 @@ h2 {
 highlighted {
   color: #8bc34a;
 }
+
+.language-picker {
+  position: absolute;
+  padding: 6px 15px;
+  top: 0;
+  right: 0;
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+
+.language-picker span {
+  font-size: 34px;
+}
+
+[language='EN'] {
+  display: none;
+}
+
+.menu.en [language='RO'] {
+  display: none;
+}
+
+.menu.en span[language='EN'] {
+  display: inline;
+}
+
+.menu.en div[language='EN'] {
+  display: block;
+}
+
+.menu.en img[language='EN'] {
+  display: inline;
+}
+
+.menu.en h2[language='EN'] {
+  display: inline;
+}
+
+.menu.en input[language='EN'] {
+  display: inline-block;
+}
