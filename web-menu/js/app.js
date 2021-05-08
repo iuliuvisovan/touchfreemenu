@@ -121,12 +121,12 @@ function toggleLanguage() {
   }
 }
 
-
 function hideKeyboard() {
-  if (window.pageYOffset > 270) {
-    console.log('Hiding keyboard');
-    document.querySelectorAll('input').forEach((x) => {
-      x.blur()
-    });
-  }
+  setTimeout(() => {
+    if (window.pageYOffset > 270) {
+      document.querySelectorAll('input:focused').forEach((x) => {
+        x.blur();
+      });
+    }
+  }, 0);
 }
