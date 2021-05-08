@@ -120,3 +120,13 @@ function toggleLanguage() {
     menu.classList.add('en');
   }
 }
+
+
+function hideKeyboard() {
+  if (window.pageYOffset > 270) {
+    console.log('Hiding keyboard');
+    document.querySelectorAll('input').forEach((x) => {
+      x.blur()
+    });
+  }
+}
