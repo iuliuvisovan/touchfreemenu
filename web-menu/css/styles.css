@@ -320,15 +320,16 @@ highlighted {
 
 .language-picker {
   position: absolute;
-  padding: 6px 15px;
   top: 0;
   right: 0;
+  padding-top: 4px;
+  padding-right: 15px;
   padding-left: 30px;
   padding-bottom: 30px;
 }
 
 .language-picker span {
-  font-size: 34px;
+  font-size: 32px;
 }
 
 [language='EN'] {
