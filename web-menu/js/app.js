@@ -124,7 +124,7 @@ function toggleLanguage() {
 function hideKeyboard() {
   setTimeout(() => {
     if (window.pageYOffset > 270) {
-      document.querySelectorAll('input:focused').forEach((x) => {
+      document.querySelectorAll('input:focus').forEach((x) => {
         x.blur();
       });
     }

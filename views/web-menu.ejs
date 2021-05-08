@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/styles.css?rndstr=<%= +new Date() %>" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/2f166c40b2.js" crossorigin="anonymous"></script>
+
+    <meta name="theme-color" content="#221818" />
+    <meta property="og:url" content="https://touchfreemenu.ro/<%- restaurant.username %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%- restaurant.name %> | Touch-Free Menu™" />
+    <meta property="og:description" content="Alternativa digitală la meniurile clasice." />
+    <meta name="keywords" content="menu,restaurant,food,digital,<%- restaurant.name %>" />
+    <meta property="og:image" content="<%- restaurant.coverPhotoUrl %>" />
   </head>
 
   <body onscroll="hideKeyboard(event)">
