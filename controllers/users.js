@@ -115,7 +115,7 @@ exports.downloadQrCode = async (req, res, next) => {
   try {
     const { restaurantSlug } = req.params;
 
-    QRCode.toString(`touchfreemenu.ro/${restaurantSlug}`, { type: 'svg' }, function (err, xml) {
+    QRCode.toString(`tfmn.ro/${restaurantSlug}`, { type: 'svg' }, function (err, xml) {
       res.set({
         'Content-Type': 'image/svg+xml',
         'Content-Disposition': 'attachment',
