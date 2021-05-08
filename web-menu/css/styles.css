@@ -210,7 +210,9 @@ h2 {
   font-size: 14px;
   display: none;
   margin-top: 4px;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
+  line-height: 16px;
+  color: #221818b5;
 }
 
 .product.tapped .description,
@@ -255,7 +257,8 @@ h2 {
 
 .product .weight {
   font-size: 14px;
-  margin-top: 3px;
+  margin-top: 4px;
+  color: #221818b5;
 }
 
 .product .price {

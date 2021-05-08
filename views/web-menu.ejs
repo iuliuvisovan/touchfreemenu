@@ -45,8 +45,8 @@
             <% } %>
             <div class="content">
               <div class="name"><%- product.name %></div>
-              <% if(product.ingredients?.length) { %>
-              <div class="description"><%- product.ingredients %></div>
+              <% if(product.description?.length) { %>
+              <div class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
               <% } %>
               <div class="weight"><%- product.quantities %></div>
               <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>
