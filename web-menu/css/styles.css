@@ -136,7 +136,15 @@ h2 {
   font-family: 'Montserrat', sans-serif;
   width: 100%;
   padding-left: 50px;
+  font-weight: 600;
   height: 42px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #7c6d6d;
+  font-weight: 400;
+  opacity: 1; /* Firefox */
 }
 
 .categories-wrapper {
@@ -206,7 +214,7 @@ h2 {
   text-shadow: 1px 1px 4px #fff;
 }
 
-.product .description {
+.product .expanded-info {
   font-size: 14px;
   display: none;
   margin-top: 4px;
@@ -215,8 +223,8 @@ h2 {
   color: #221818b5;
 }
 
-.product.tapped .description,
-.menu.searching .description {
+.product.tapped .expanded-info,
+.menu.searching .expanded-info {
   display: block;
 }
 

@@ -63,8 +63,11 @@
               <div language="RO" class="name"><%- product.name %></div>
               <div language="EN" class="name"><%- product.nameEn %></div>
               <% if(product.description?.length) { %>
-              <div language="RO" class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
-              <div language="EN" class="description"><%- product.descriptionEn[0].toUpperCase() + product.descriptionEn.slice(1) %></div>
+              <div class="expanded-info">
+                <div language="RO" class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
+                <div language="EN" class="description"><%- product.descriptionEn[0].toUpperCase() + product.descriptionEn.slice(1) %></div>
+              </div>
+
               <% } %>
               <div class="weight"><%- product.quantities %></div>
               <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>
