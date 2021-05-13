@@ -21,12 +21,12 @@
       }
 
       .restaurant-logo {
-        height: 160px;
-        margin-top: 64px;
+        height: 80px;
+        margin-top: 32px;
       }
 
       .qr-code {
-        height: 680px;
+        height: 320px;
       }
 
       .scan-text {
@@ -40,8 +40,8 @@
         bottom: 0;
         left: 0;
         width: 100vw;
-        height: 100px;
-        padding: 16px 24px;
+        height: 42px;
+        padding: 0 10px;
         background: #f3f3f3;
         display: flex;
         align-items: center;
@@ -50,17 +50,14 @@
       }
 
       .short-menu-url {
-        padding: 10px 20px;
-        padding-top: 12px;
         border-radius: 28px;
-        border: 1px solid #9ca0a4;
+        border: 0.5px dashed #fff0;
         color: #9ca0a4;
-        font-size: 18px;
       }
 
       @media print {
         @page {
-          size: 229mm 324mm;
+          size: 105mm 148mm;
         }
       }
     </style>
@@ -76,21 +73,19 @@
           <img src="/<%- restaurantSlug %>/my-qr-code.svg" alt="QR Code" class="qr-code" />
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
-          <span style="font-size: 33px; margin-bottom: 5px">SCAN ME FOR THE</span>
-          <span style="font-size: 100px; font-weight: 800">MENU</span>
+          <span style="font-size: 15px; margin-bottom: 2px">SCAN ME FOR THE</span>
+          <span style="font-size: 46px; font-weight: 800">MENU</span>
         </div>
         <div class="footer">
           <div style="display: flex; align-items: center">
-            <img style="width: 30px; margin-right: 24px" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+            <img style="width: 13px; margin-right: 10px" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
             <div style="display: flex; justify-content: center; flex-direction: column">
-              <span style="font-size: 24px">Powered by Touch-Free Menu™</span>
-              <span style="font-size: 18px; color: #9ca0a4; font-weight: 100; margin-top: 4px; margin-bottom: -4px"
-                >www.touchfreemenu.ro</span
-              >
+              <span style="font-size: 11px">Powered by Touch-Free Menu™</span>
+              <span style="font-size: 8px; color: #9ca0a4; margin-top: 1px; margin-bottom: -2px; letter-spacing: 0.2px;">www.touchfreemenu.ro</span>
             </div>
           </div>
           <div class="short-menu-url">
-            <span>tfmn.ro/<b><%- restaurantSlug %></b></span>
+            <span style="font-size: 9px">tfmn.ro/<b><%- restaurantSlug %></b></span>
           </div>
         </div>
       </div>
