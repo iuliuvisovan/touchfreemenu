@@ -30,7 +30,7 @@ router.post('/products/move', auth.withCurrentUser, products.move);
 
 module.exports = (app) => {
   app.use('/api', router);
-  app.use(express.static('public'));
+  app.use(express.static('qr-holder'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
   app.use((req, res, next) => {
@@ -42,10 +42,7 @@ module.exports = (app) => {
     } else {
       express.static('presentation-site')(req, res, next);
     }
-
-    app.get('/yourname', (req, res) => {
-      res.sendFile('presentation-site/scan-succesful.html', { root: __dirname });
-    });
+ 
 
     app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
     app.get('/:restaurantSlug/my-qr-holder', users.getQrHolder);

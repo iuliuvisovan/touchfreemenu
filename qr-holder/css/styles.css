@@ -1,0 +1,53 @@
+.qr-holder {
+  font-family: 'Kumbh Sans', sans-serif;
+  height: 100%;
+  color: #303336;
+}
+
+.qr-holder .content {
+  height: calc(100% - 260px);
+}
+
+.restaurant-logo {
+  height: 160px;
+  margin-top: 64px;
+}
+
+.qr-code {
+  height: 680px;
+}
+
+.scan-text {
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100px;
+  padding: 16px 24px;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.short-menu-url {
+  padding: 10px 20px;
+  padding-top: 12px;
+  border-radius: 28px;
+  border: 1px solid #9ca0a4;
+  color: #9ca0a4;
+  font-size: 18px;
+}
+
+@media print {
+  @page {
+    size: 229mm 324mm;
+  }
+}

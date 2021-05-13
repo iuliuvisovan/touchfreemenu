@@ -110,12 +110,11 @@ exports.getCurrentUser = (req, res, next) => {
   res.status(200).json(req.user);
 };
 
-
 exports.downloadQrCode = async (req, res, next) => {
   try {
     const { restaurantSlug } = req.params;
 
-    QRCode.toString(`tfmn.ro/${restaurantSlug}`, { type: 'svg' }, function (err, xml) {
+    QRCode.toString(`tfmn.ro/${restaurantSlug}`, { type: 'svg', color: { dark: '#303336' } }, function (err, xml) {
       res.set({
         'Content-Type': 'image/svg+xml',
         'Content-Disposition': 'attachment',
@@ -132,22 +131,21 @@ const getQRCodeURL = (restaurantSlug) => {
     QRCode.toDataURL(`tfmn.ro/${restaurantSlug}`, function (err, url) {
       if (err) {
         reject(err);
-        return
+        return;
       }
       resolve(url);
-    })
-  })
-}
+    });
+  });
+};
 
 exports.getQrHolder = async (req, res, next) => {
   try {
     const { restaurantSlug } = req.params;
     const restaurant = await User.findOne({ username: restaurantSlug });
     if (restaurant) {
-      const qrCodeUrl = await getQRCodeURL(restaurantSlug);
-      return res.render('qr-holder', { slug: restaurantSlug, logoUrl: restaurant.logoUrl, qrCodeUrl });
+      return res.render('qr-holder', { restaurantSlug, logoUrl: restaurant.logoUrl });
     } else {
-      return res.sendStatus(404)
+      return res.sendStatus(404);
     }
   } catch (err) {
     next(err);
