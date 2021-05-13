@@ -30,7 +30,7 @@ router.post('/products/move', auth.withCurrentUser, products.move);
 
 module.exports = (app) => {
   app.use('/api', router);
-
+  app.use(express.static('public'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
   app.use((req, res, next) => {
@@ -48,6 +48,7 @@ module.exports = (app) => {
     });
 
     app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
+    app.get('/:restaurantSlug/my-qr-holder', users.getQrHolder);
     app.get('/:restaurantSlug', users.showMenuIfValidSlug);
 
     app.get('/api/*', (req, res, next) => {

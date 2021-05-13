@@ -127,6 +127,33 @@ exports.downloadQrCode = async (req, res, next) => {
   }
 };
 
+const getQRCodeURL = (restaurantSlug) => {
+  return new Promise((resolve, reject) => {
+    QRCode.toDataURL(`tfmn.ro/${restaurantSlug}`, function (err, url) {
+      if (err) {
+        reject(err);
+        return
+      }
+      resolve(url);
+    })
+  })
+}
+
+exports.getQrHolder = async (req, res, next) => {
+  try {
+    const { restaurantSlug } = req.params;
+    const restaurant = await User.findOne({ username: restaurantSlug });
+    if (restaurant) {
+      const qrCodeUrl = await getQRCodeURL(restaurantSlug);
+      return res.render('qr-holder', { slug: restaurantSlug, logoUrl: restaurant.logoUrl, qrCodeUrl });
+    } else {
+      return res.sendStatus(404)
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.showMenuIfValidSlug = async (req, res, next) => {
   const { restaurantSlug } = req.params;
 
