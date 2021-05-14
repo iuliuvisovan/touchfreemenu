@@ -99,14 +99,21 @@ h2 {
   position: relative;
 }
 
+.chevron-icon {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  margin-right: 3px;
+  font-size: 12px;
+}
+
 .search-icon {
   position: absolute;
-  top: 24px;
+  top: 28px;
   left: 28px;
-  color: #221818;
-  width: 30px;
+  color: #221818;  width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .clear-icon {
@@ -139,7 +146,7 @@ h2 {
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
-  padding-left: 50px;
+  padding-left: 40px;
   font-weight: 600;
   height: 42px;
 }
@@ -334,14 +341,25 @@ highlighted {
   position: absolute;
   top: 0;
   right: 0;
-  padding-top: 4px;
-  padding-right: 15px;
+  padding-top: 8px;
+  padding-right: 8px;
   padding-left: 30px;
   padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.language-picker-button {
+  border: 1px solid white;
+  height: 31px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px #0004;
 }
 
 .language-picker span {
-  font-size: 32px;
+  font-size: 24px;
 }
 
 [language='EN'] {
