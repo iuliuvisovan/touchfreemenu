@@ -74,6 +74,10 @@ h2 {
   border: 1px solid #fff;
   border-radius: 100%;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff4;
 }
 
 .restaurant-logo-wrapper .inner {
