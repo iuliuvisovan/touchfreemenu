@@ -16,17 +16,9 @@
         color: #303336;
       }
 
-      .qr-holder .content {
-        height: calc(100% - 260px);
-      }
-
       .restaurant-logo {
         height: 80px;
         margin-top: 32px;
-      }
-
-      .qr-code {
-        height: 320px;
       }
 
       .scan-text {
@@ -64,10 +56,14 @@
           <img src="<%- logoUrl %>" alt="Restaurant Logo" class="restaurant-logo" />
         </div>
         <div style="display: flex; justify-content: center">
-          <img src="/<%- restaurantSlug %>/my-qr-code.svg" alt="QR Code" class="qr-code" />
+          <img
+            style="height: 308px; margin-top: -8px; position: relative; z-index: -1"
+            src="/<%- restaurantSlug %>/my-qr-code.svg"
+            alt="QR Code"
+          />
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
-          <span style="font-size: 15px; margin-bottom: 2px">SCAN ME FOR THE</span>
+          <span style="font-size: 15px; margin-bottom: 2px; margin-top: -8px">SCAN ME FOR THE</span>
           <span style="font-size: 46px; font-weight: 800">MENU</span>
         </div>
         <div class="footer">
@@ -84,8 +80,8 @@
               >
             </div>
           </div>
-          <div style="color: #9ca0a4; margin-top: -1px">
-            <span style="font-size: 9px">tfmn.ro/<b><%- restaurantSlug %></b></span>
+          <div style="border-radius: 28px; border: 0.5px dashed #fff0; color: #9ca0a4; margin-top: 2px">
+            <span style="font-size: 9px; margin-right: 2px">tfmn.ro/<b><%- restaurantSlug %></b></span>
           </div>
         </div>
       </div>
