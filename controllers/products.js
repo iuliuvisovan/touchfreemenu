@@ -51,6 +51,7 @@ exports.create = async (req, res, next) => {
       quantities,
       price,
       isDiscounted,
+      isAvailable: true,
       discountedPrice,
       index: highestProductIndex + 1,
       createdAt: new Date(),
@@ -114,6 +115,7 @@ exports.edit = async (req, res, next) => {
       discountedPrice,
       categoryId,
       isDiscounted,
+      isAvailable,
       description,
       descriptionEn,
     } = req.body;
@@ -130,6 +132,7 @@ exports.edit = async (req, res, next) => {
       discountedPrice,
       categoryId,
       isDiscounted,
+      isAvailable,
       updatedAt: new Date(),
     };
     Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
