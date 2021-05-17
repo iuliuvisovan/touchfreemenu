@@ -76,16 +76,11 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff4;
-}
-
-.restaurant-logo-wrapper .inner {
-  border-radius: 100%;
-  overflow: hidden;
+  background-color: #fff8;
 }
 
 .restaurant-logo-wrapper img {
-  height: 100%;
+  height: 86%;
 }
 
 ::placeholder {
