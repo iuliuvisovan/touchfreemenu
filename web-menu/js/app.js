@@ -6,19 +6,6 @@ function app() {
 }
 app();
 
-// function setupSearchInput() {
-//   setTimeout(() => {
-//     const searchInput = document.querySelector('#searchInput');
-
-//     searchInput.addEventListener('focus', () => {
-//       window.scrollTo({ top: 198, behavior: 'smooth' });
-//     });
-//     searchInput.addEventListener('keyup', () => {
-//       search(searchInput.value);
-//     });
-//   }, 300);
-// }
-
 function scrollToInput() {
   window.scrollTo({ top: 198, behavior: 'smooth' });
 }
@@ -123,7 +110,7 @@ function toggleLanguage() {
 
 function hideKeyboard() {
   setTimeout(() => {
-    if (window.pageYOffset > 260) {
+    if (window.pageYOffset > 220) {
       document.querySelectorAll('input:focus').forEach((x) => {
         x.blur();
       });

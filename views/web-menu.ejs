@@ -24,24 +24,40 @@
         <img class="cover-photo" src="<%- restaurant.coverPhotoUrl %>" />
         <div class="bottom-gradient"></div>
         <div class="restaurant-logo-wrapper">
-          <div class="inner">
-            <img src="<%- restaurant.logoUrl %>" alt="Restaurant Logo" class="restaurant-logo" />
-          </div>
+          <img src="<%- restaurant.logoUrl %>" alt="Restaurant Logo" class="restaurant-logo" />
         </div>
-        <h1 class="title"><%- restaurant.name %></h1>
-        <h2 language="RO" class="subtitle">Meniu</h2>
-        <h2 language="EN" class="subtitle">Menu</h2>
+        <h1><%- restaurant.name %></h1>
+        <h2 language="RO">Meniu</h2>
+        <h2 language="EN">Menu</h2>
         <div class="language-picker">
-          <span onclick="toggleLanguage()" language="RO">🇷🇴</span>
-          <span onclick="toggleLanguage()" language="EN">🇬🇧</span>
+          <div class="language-picker-button">
+            <span onclick="toggleLanguage()" language="RO">🇷🇴</span>
+            <span onclick="toggleLanguage()" language="EN">🇬🇧</span>
+          </div>
         </div>
       </div>
       <div class="search-wrapper">
         <div class="search-icon">
           <i class="fas fa-search"></i>
         </div>
-        <input onkeyup="search(this.value)" onfocus="scrollToInput()" type="text" language="RO" placeholder="Caută" />
-        <input onkeyup="search(this.value)" onfocus="scrollToInput()" type="text" language="EN" placeholder="Search" />
+        <input
+          onkeyup="search(this.value)"
+          onfocus="scrollToInput()"
+          autocorrect="off"
+          autocapitalize="none"
+          type="text"
+          language="RO"
+          placeholder="Caută"
+        />
+        <input
+          onkeyup="search(this.value)"
+          onfocus="scrollToInput()"
+          type="text"
+          autocorrect="off"
+          autocapitalize="none"
+          language="EN"
+          placeholder="Search"
+        />
         <div onclick="clearInput()" id="clearButton" class="clear-icon">
           <i class="fas fa-times"></i>
         </div>

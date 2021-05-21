@@ -457,6 +457,8 @@ components:
           type: integer
         isDiscounted:
           type: boolean
+        isAvailable:
+          type: boolean  
         discountedPrice:
           type: integer
   schemas:
@@ -541,6 +543,8 @@ components:
           type: integer
         isDiscounted:
           type: boolean
+        isAvailable:
+          type: boolean  
         discountedPrice:
           type: integer
         index:
