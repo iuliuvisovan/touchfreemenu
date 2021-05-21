@@ -93,6 +93,11 @@
             </div>
             <% if(product.imageUrl) { %>
             <img class="photo collapsed" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
+            <% } %> <% if(!product.isAvailable) { %>
+            <div class="unavailable-banner">
+              <span language="RO">Indisponibil</span>
+              <span language="EN">Unavailable</span>
+            </div>
             <% } %>
             <div class="gradient"></div>
           </div>

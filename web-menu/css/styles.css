@@ -386,3 +386,20 @@ highlighted {
 .menu.en input[language='EN'] {
   display: inline-block;
 }
+
+.unavailable-banner {
+  width: 115px;
+  background-color: #ff5722;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  color: #fff;
+  position: absolute;
+  padding-bottom: 3px;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  border-top-left-radius: 8px;
+  box-shadow: 0 0px 8px #302b2b54;
+}
