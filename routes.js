@@ -9,7 +9,6 @@ const yamljs = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDoc = yamljs.load('swagger/api.yaml');
 
-
 router.post('/request-demo', demoRequests.requestDemo);
 router.post('/login', users.login);
 router.post('/change-password', auth.withCurrentUser, users.changePassword);

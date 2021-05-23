@@ -1,8 +1,9 @@
 const Product = require('../models/product');
 const multer = require('multer');
-const multerS3 = require('multer-s3');
+const multerS3 = require('multer-s3-transform');
 const AWS = require('aws-sdk');
-const { translate } = require('./utils');
+const sharp = require('sharp');
+const { translate, toImageUrl } = require('./utils');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.uploadImageToS3 = multer({
@@ -21,13 +22,31 @@ exports.uploadImageToS3 = multer({
         cb('Error: Images Only!');
       }
     },
-    key: (req, file, cb) => {
+    shouldTransform: function (_, _, cb) {
+      cb(null, true);
+    },
+    key: function (req, file, cb) {
       const imageKey = `product-images/${req.user.username}/${+new Date()}-${file.originalname}`;
 
       req.uploadedImageKey = imageKey;
 
       cb(null, imageKey);
     },
+    transforms: [
+      {
+        id: 'original',
+        key: function (req, file, cb) {
+          const imageKey = `product-images/${req.user.username}/${+new Date()}-${file.originalname}`;
+
+          req.uploadedImageKey = imageKey;
+
+          cb(null, imageKey);
+        },
+        transform: async function (_, file, cb) {
+          cb(null, sharp().resize(1600).jpeg({ quality: 85 }));
+        },
+      },
+    ],
   }),
 }).single('imageFile');
 
@@ -46,7 +65,6 @@ exports.create = async (req, res, next) => {
       nameEn,
       description,
       descriptionEn,
-      imageUrl: req.file?.location || '',
       imageKey: req.uploadedImageKey || '',
       quantities,
       price,
@@ -58,7 +76,7 @@ exports.create = async (req, res, next) => {
       updatedAt: new Date(),
     });
 
-    res.status(201).json(product);
+    res.status(201).json({ ...product.toJSON(), imageUrl: toImageUrl(req.uploadedImageKey) });
   } catch (err) {
     next(err);
   }
@@ -67,7 +85,7 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
   try {
     const products = await Product.find({ userId: req.user.id });
-    res.status(200).json(products);
+    res.status(200).json(products.map((x) => ({ ...x.toJSON(), imageUrl: toImageUrl(x.imageKey) })));
   } catch (err) {
     next(err);
   }
@@ -94,7 +112,7 @@ exports.move = async (req, res, next) => {
         const newProductIndex = newList.find((x) => x.id == product.id).index;
 
         await Product.updateOne({ _id: product._id }, { $set: { index: newProductIndex } });
-      })
+      }),
     );
 
     res.status(201).json(newList);
@@ -110,7 +128,7 @@ exports.edit = async (req, res, next) => {
       name,
       nameEn,
       quantities,
-      imageUrl,
+      imageKey,
       price,
       discountedPrice,
       categoryId,
@@ -138,27 +156,28 @@ exports.edit = async (req, res, next) => {
     Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
 
     //Image has changed
-    if (!imageUrl) {
+    if (!imageKey) {
       //Remove old image
-      if (originalProduct.imageUrl) {
+      if (originalProduct.imageKey) {
         await new AWS.S3().deleteObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: originalProduct.imageKey }, console.log);
       }
 
       //New image has been supplied
       if (req.file) {
-        updatedFields.imageUrl = req.file.location;
         updatedFields.imageKey = req.uploadedImageKey;
 
         //Image has been removed
       } else {
-        updatedFields.imageUrl = '';
         updatedFields.imageKey = '';
       }
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(id, { $set: updatedFields }, { new: true });
 
-    res.status(201).json(updatedProduct);
+    res.status(201).json({
+      ...updatedProduct.toJSON(),
+      imageUrl: toImageUrl(req.uploadedImageKey),
+    });
   } catch (err) {
     next(err);
   }
@@ -191,6 +210,6 @@ const uniformizeProductIndexes = async (categoryId) => {
       const newProductIndex = newList.find((x) => x.id == product.id).index;
 
       await Product.updateOne({ _id: product._id }, { $set: { index: newProductIndex } });
-    })
+    }),
   );
 };

@@ -294,7 +294,7 @@ paths:
                   properties:
                     id:
                       type: string
-                    imageUrl:
+                    imageKey:
                       type: string
       responses:
         '201':
