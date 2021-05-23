@@ -403,3 +403,8 @@ highlighted {
   border-top-left-radius: 8px;
   box-shadow: 0 0px 8px #302b2b54;
 }
+
+.no-products {
+  text-align: center;
+  margin-top: 15vh;
+}
