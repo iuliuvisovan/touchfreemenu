@@ -10,11 +10,8 @@ moment.locale('ro');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.login = (req, res, next) => {
-  const result = validationResult(req);
-
-  if (!result.isEmpty()) {
-    const errors = result.array({ onlyFirstError: true });
-    return res.status(422).json({ errors });
+  if(!req.body.username?.length || !req.body.password?.length) {
+    return res.status(422).json({ message: 'Introdu un nume de utilizator și o parolă' });
   }
 
   login(req, res, next);
@@ -99,7 +96,7 @@ exports.validate = (method) => {
       body('logoUrl').exists().withMessage('is required'),
       body('coverPhotoUrl').exists().withMessage('is required'),
       body('city').exists().withMessage('is required'),
-      body('coords').exists().withMessage('is required')
+      body('coords').exists().withMessage('is required'),
     );
   }
 
@@ -124,18 +121,6 @@ exports.downloadQrCode = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
-
-const getQRCodeURL = (restaurantSlug) => {
-  return new Promise((resolve, reject) => {
-    QRCode.toDataURL(`tfmn.ro/${restaurantSlug}`, function (err, url) {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(url);
-    });
-  });
 };
 
 exports.getQrHolder = async (req, res, next) => {
