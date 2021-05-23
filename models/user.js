@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
     logoUrl: String,
     coverPhotoUrl: { type: String, required: true },
     joinDate: Date,
+    themeColor: String,
     city: String,
     coords: {
       latitude: Number,
