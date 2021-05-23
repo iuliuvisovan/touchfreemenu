@@ -45,9 +45,9 @@ h2 {
 }
 
 .cover-photo {
-  width: 100%;
+  width: 120%;
   position: absolute;
-  left: 0;
+  left: -5%;
   top: 0;
   bottom: 0;
   margin: auto;
