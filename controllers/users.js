@@ -6,11 +6,12 @@ const Product = require('../models/product');
 const AWS = require('aws-sdk');
 const moment = require('moment');
 var QRCode = require('qrcode');
+const { toImageUrl } = require('./utils');
 moment.locale('ro');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.login = (req, res, next) => {
-  if(!req.body.username?.length || !req.body.password?.length) {
+  if (!req.body.username?.length || !req.body.password?.length) {
     return res.status(422).json({ message: 'Introdu un nume de utilizator și o parolă' });
   }
 
@@ -147,7 +148,13 @@ exports.showMenuIfValidSlug = async (req, res, next) => {
     const categories = await Category.find({ userId: restaurant.id }).lean();
 
     categories.forEach((category) => {
-      category.products = products.filter((y) => y.categoryId == category._id).sort((a, b) => a.index - b.index);
+      category.products = products
+        .filter((y) => y.categoryId == category._id)
+        .sort((a, b) => a.index - b.index)
+        .map((x) => ({
+          ...x,
+          imageUrl: toImageUrl(x.imageKey),
+        }));
     });
 
     restaurant.categories = categories.sort((a, b) => a.index - b.index);
