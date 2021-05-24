@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const Sentry = require('@sentry/node');
 
 exports.createAuthToken = (user) => {
   return jwt.sign({ user }, process.env.JWT_SECRET, {
@@ -21,6 +22,7 @@ exports.withCurrentUser = (req, res, next) => {
     if (err) return next(err);
     if (!user) return res.status(401).json({ message: 'unauthorized' });
     req.user = user;
+    Sentry.setUser({ ...user });
     next();
   })(req, res);
 };
