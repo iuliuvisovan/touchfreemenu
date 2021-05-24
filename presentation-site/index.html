@@ -278,54 +278,16 @@
     <script src="js/js-plugins.js"></script>
     <script src="js/js-custom1.js"></script>
 
-    <!--Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B8XB17V9CY"></script>
     <script>
-      (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-      ga('create', '273366841', 'auto');
-      ga('send', 'pageview');
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '5 seconds');
-      }, 5000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '10 seconds');
-      }, 10000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '15 seconds');
-      }, 15000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '20 seconds');
-      }, 20000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '25 seconds');
-      }, 20000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '30 seconds');
-      }, 30000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '60 seconds');
-      }, 60000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '120 seconds');
-      }, 120000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '240 seconds');
-      }, 240000);
-      setTimeout(() => {
-        ga('send', 'event', 'Time elapsed', '360 seconds');
-      }, 360000);
+      gtag('config', 'G-B8XB17V9CY');
     </script>
   </body>
 </html>
