@@ -176,7 +176,7 @@ exports.edit = async (req, res, next) => {
 
     res.status(201).json({
       ...updatedProduct.toJSON(),
-      imageUrl: toImageUrl(req.uploadedImageKey),
+      imageUrl: toImageUrl(updatedProduct.imageKey),
     });
   } catch (err) {
     next(err);
