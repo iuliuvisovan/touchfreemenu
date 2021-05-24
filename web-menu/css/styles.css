@@ -179,6 +179,9 @@ h2 {
 .category {
   padding: 8px;
 }
+.category.hidden {
+  display: none;
+}
 
 .category:nth-child(even) {
   background-color: #77777710;
