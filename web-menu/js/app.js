@@ -39,6 +39,16 @@ function search(query) {
       });
     }
   });
+
+  document.querySelectorAll('.category').forEach((x) => {
+    const product = x.querySelector('.product:not(.hidden)');
+
+    if (!product) {
+      x.classList.add('hidden');
+    } else {
+      x.classList.remove('hidden');
+    }
+  });
 }
 
 function highlightFoundText(normalizedQuery, productNameOrDescription) {
