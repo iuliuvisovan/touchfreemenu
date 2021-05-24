@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^6.2.0",
+    "@sentry/node": "^6.4.1",
+    "@sentry/tracing": "^6.4.1",
     "aws-sdk": "^2.752.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
