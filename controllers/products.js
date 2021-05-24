@@ -43,7 +43,7 @@ exports.uploadImageToS3 = multer({
           cb(null, imageKey);
         },
         transform: async function (_, file, cb) {
-          cb(null, sharp().resize(1600).jpeg({ quality: 85 }));
+          cb(null, sharp().resize(1600).withMetadata().jpeg({ quality: 85 }));
         },
       },
     ],
