@@ -8,6 +8,7 @@ const router = express.Router();
 const yamljs = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDoc = yamljs.load('swagger/api.yaml');
+const Sentry = require('@sentry/node');
 
 router.post('/request-demo', demoRequests.requestDemo);
 router.post('/login', users.login);
@@ -22,7 +23,7 @@ router.delete('/categories/:categoryId', auth.withCurrentUser, categories.delete
 router.post('/categories/move', auth.withCurrentUser, categories.move);
 
 router.get('/products', auth.withCurrentUser, products.getAll);
-router.post('/products', auth.withCurrentUser, products.uploadImageToS3, products.create);
+router.post('/products', auth.withCurrentUser, products.uploadImageToS3, products.create);;
 router.put('/products', auth.withCurrentUser, products.uploadImageToS3, products.edit);
 router.delete('/products/:productId', auth.withCurrentUser, products.delete);
 router.post('/products/move', auth.withCurrentUser, products.move);
@@ -30,6 +31,9 @@ router.post('/products/move', auth.withCurrentUser, products.move);
 module.exports = (app) => {
   app.use('/api', router);
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
+  // The error handler must be before any other error middleware and after all controllers
+  app.use(Sentry.Handlers.errorHandler());
 
   app.use((req, res, next) => {
     const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');
@@ -63,7 +67,7 @@ module.exports = (app) => {
     }
 
     console.log('err', err);
-
+    Sentry.captureException(err);
     return res.status(500).json(err);
   });
 };
