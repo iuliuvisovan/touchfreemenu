@@ -88,10 +88,13 @@
 
               <% } %>
               <div class="weight"><%- product.quantities %></div>
-              <div class="price <%- product.isDiscounted ? 'obsolete' : '' %>"><%- product.price %> RON</div>
-              <% if(product.isDiscounted) { %>
+              <div class="price <%- product.isDiscounted && product.discountedPrice ? 'obsolete' : '' %>"><%- product.price %> RON</div>
+              <% if(product.isDiscounted && product.discountedPrice) { %>
               <div class="discounted-price"><%- product.discountedPrice %> RON</div>
               <% } %>
+              <div class="euro-equivalent">
+                <span language="EN"> ~<%- ((product.isDiscounted ? product.discountedPrice : product.price) / 4.93).toFixed(2) %>€ </span>
+              </div>
             </div>
             <% if(product.imageUrl) { %>
             <img class="photo collapsed" src="<%- product.imageUrl %>" alt="<%- product.name %>" />
