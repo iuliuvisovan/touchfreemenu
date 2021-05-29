@@ -120,7 +120,7 @@ jQuery(function ($) {
     const email = $('#emailInput').val();
 
     if (!validateEmail(email)) {
-      $('#error').html('Te rog introdu o adresă validă.');
+      $('#error').html('Te rog introdu o adresă de e-mail validă.');
       setTimeout(() => {
         $('#error').html('');
       }, 4000);
