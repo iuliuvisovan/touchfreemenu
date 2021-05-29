@@ -88,12 +88,19 @@
 
               <% } %>
               <div class="weight"><%- product.quantities %></div>
-              <div class="price <%- product.isDiscounted && product.discountedPrice ? 'obsolete' : '' %>"><%- product.price %> RON</div>
+              <div class="price <%- product.isDiscounted && product.discountedPrice ? 'obsolete' : '' %>">
+                <%- product.price.toString().replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %> RON
+              </div>
               <% if(product.isDiscounted && product.discountedPrice) { %>
-              <div class="discounted-price"><%- product.discountedPrice %> RON</div>
+              <div class="discounted-price">
+                <%- product.discountedPrice.toString().replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %> RON
+              </div>
               <% } %>
               <div class="euro-equivalent">
-                <span language="EN"> ~<%- ((product.isDiscounted ? product.discountedPrice : product.price) / 4.93).toFixed(2) %>€ </span>
+                <span language="EN">
+                  ~<%- ((product.isDiscounted ? product.discountedPrice : product.price) / 4.93).toFixed(2).replace('.', ',')
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %>€
+                </span>
               </div>
             </div>
             <% if(product.imageUrl) { %>

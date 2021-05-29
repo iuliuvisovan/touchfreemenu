@@ -348,6 +348,7 @@ highlighted {
   padding-bottom: 30px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .language-picker-button {
