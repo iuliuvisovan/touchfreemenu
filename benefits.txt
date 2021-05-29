@@ -1,0 +1,8 @@
+Beneficii:
+
+ - Traducere automată
+ - Lightweight: mărime mică (PDF-urile sunt mari)
+ - Adaugare de imagini
+ - Meniu personaliz cu logo-ul si poza de cover
+ - Layout optimizat pentru mobil
+ 
