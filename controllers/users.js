@@ -11,7 +11,11 @@ moment.locale('ro');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.login = (req, res, next) => {
+<<<<<<< HEAD
   if (!req.body.username?.length || !req.body.password?.length) {
+=======
+  if(!req.body.username?.length || !req.body.password?.length) {
+>>>>>>> Fix error message when no username/pw is provided
     return res.status(422).json({ message: 'Introdu un nume de utilizator și o parolă' });
   }
 
