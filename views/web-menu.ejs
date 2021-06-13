@@ -67,8 +67,10 @@
         <p class="no-products">Niciun produs aici încă. 🤔</p>
         <% } %> <% restaurant.categories.forEach(function(category) { %>
         <div class="category">
-          <div language="RO" class="category-label"><%- category.name %></div>
-          <div language="EN" class="category-label"><%- category.nameEn %></div>
+          <div language="RO" class="category-name"><%- category.name %></div>
+          <div language="EN" class="category-name"><%- category.nameEn %></div>
+          <div language="RO" class="category-description"><%- category.description %></div>
+          <div language="EN" class="category-description"><%- category.descriptionEn %></div>
           <% category.products.forEach(function(product) { %>
           <div class="product">
             <% if(product.imageUrl) { %>

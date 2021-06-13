@@ -192,10 +192,18 @@ h2 {
   background-color: #77777710;
 }
 
-.category-label {
+.category-name {
   margin-bottom: 8px;
   margin-left: 13px;
   margin-top: 12px;
+}
+
+.category-description {
+  margin-left: 13px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  margin-top: -4px;
+  color: #22181888
 }
 
 .products-wrapper {
