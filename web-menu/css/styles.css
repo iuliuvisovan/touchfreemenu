@@ -83,6 +83,11 @@ h2 {
   height: 86%;
 }
 
+.restaurant-logo-wrapper img.full-width {
+  height: auto;
+  width: 105%;
+}
+
 ::placeholder {
   color: #221818;
 }

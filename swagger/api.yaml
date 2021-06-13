@@ -409,6 +409,8 @@ components:
               type: number
             longitude:
               type: number
+        usesFullWidthLogo:
+          type: boolean
         registrationSecret:
           type: string
     RequestDemo:
