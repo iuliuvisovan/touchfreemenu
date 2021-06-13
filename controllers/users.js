@@ -39,13 +39,13 @@ exports.register = async (req, res, next) => {
   }
 
   try {
-    const { username, password, name, email, logoUrl, city, coords, registrationSecret, coverPhotoUrl } = req.body;
+    const { username, password, name, email, logoUrl, city, coords, registrationSecret, coverPhotoUrl, usesFullWidthLogo } = req.body;
 
     if (registrationSecret !== process.env.REGISTRATION_SECRET) {
       return res.status(422).json({ message: 'Wrong registration secret' });
     }
 
-    const user = await User.create({ username, password, name, email, logoUrl, coverPhotoUrl, city, coords, joinDate: new Date() });
+    const user = await User.create({ username, password, name, email, logoUrl, coverPhotoUrl, city, coords, usesFullWidthLogo, joinDate: new Date() });
 
     const token = createAuthToken(user.toJSON());
     res.status(201).json({ token });
@@ -93,7 +93,6 @@ exports.validate = (method) => {
         if (exists) throw new Error('already exists');
       }),
       body('name').exists().withMessage('is required'),
-      body('email').exists().withMessage('is required'),
       body('logoUrl').exists().withMessage('is required'),
       body('coverPhotoUrl').exists().withMessage('is required'),
       body('city').exists().withMessage('is required'),
