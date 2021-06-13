@@ -12,7 +12,11 @@ AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: pr
 
 exports.login = (req, res, next) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (!req.body.username?.length || !req.body.password?.length) {
+=======
+  if(!req.body.username?.length || !req.body.password?.length) {
+>>>>>>> Fix error message when no username/pw is provided
 =======
   if(!req.body.username?.length || !req.body.password?.length) {
 >>>>>>> Fix error message when no username/pw is provided
