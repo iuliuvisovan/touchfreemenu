@@ -143,7 +143,7 @@ exports.showMenuIfValidSlug = async (req, res, next) => {
   const restaurant = await User.findOne({ username: restaurantSlug });
 
   if (restaurant) {
-    const products = await Product.find({ userId: restaurant.id }).lean();
+    const products = await Product.find({ userId: restaurant.id, isAvailable: true }).lean();
     const categories = await Category.find({ userId: restaurant.id }).lean();
 
     categories.forEach((category) => {

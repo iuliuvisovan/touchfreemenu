@@ -4,7 +4,7 @@ const { translate } = require('./utils');
 
 exports.create = async (req, res, next) => {
   try {
-    const { name } = req.body;
+    const { name, description } = req.body;
 
     if (!name.trim().length) {
       return res.status(422).json({ message: 'Cannot create category with no name.' });
@@ -12,10 +12,14 @@ exports.create = async (req, res, next) => {
 
     const highestCategoryIndex = (await Category.findOne().sort({ index: -1 }))?.index || 0;
     const nameEn = await translate(name);
+    const descriptionEn = await translate(description);
+
 
     const category = await Category.create({
       name,
       nameEn,
+      description,
+      descriptionEn,
       index: highestCategoryIndex + 1,
       userId: req.user.id,
       createdAt: new Date(),
@@ -66,11 +70,13 @@ exports.move = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const { id, name, nameEn } = req.body;
+    const { id, name, nameEn, description, descriptionEn } = req.body;
 
     const updatedFields = {
       name,
       nameEn,
+      description,
+      descriptionEn,
     };
     Object.keys(updatedFields).forEach((key) => updatedFields[key] === undefined && delete updatedFields[key]);
 
