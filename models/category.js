@@ -4,6 +4,8 @@ const categorySchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     nameEn: String,
+    description: String,
+    descriptionEn: String,
     index: Number,
     userId: { type: String, required: true },
     createdAt: Date,

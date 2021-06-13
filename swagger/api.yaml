@@ -509,6 +509,10 @@ components:
           type: string
         nameEn:
           type: string  
+        description:
+          type: string
+        descriptionEn:
+          type: string
         index:
           type: number
         userId:
