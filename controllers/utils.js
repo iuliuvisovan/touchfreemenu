@@ -1,7 +1,7 @@
 const { Translate } = require('@google-cloud/translate').v2;
 
 exports.translate = async (input, from = 'ro', to = 'en') => {
-  let translation = ' - ';
+  let translation = '';
   if (!input) {
     return translation;
   }
