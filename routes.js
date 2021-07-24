@@ -23,7 +23,7 @@ router.delete('/categories/:categoryId', auth.withCurrentUser, categories.delete
 router.post('/categories/move', auth.withCurrentUser, categories.move);
 
 router.get('/products', auth.withCurrentUser, products.getAll);
-router.post('/products', auth.withCurrentUser, products.uploadImageToS3, products.create);;
+router.post('/products', auth.withCurrentUser, products.uploadImageToS3, products.create);
 router.put('/products', auth.withCurrentUser, products.uploadImageToS3, products.edit);
 router.delete('/products/:productId', auth.withCurrentUser, products.delete);
 router.post('/products/move', auth.withCurrentUser, products.move);
@@ -45,6 +45,9 @@ module.exports = (app) => {
       express.static('presentation-site')(req, res, next);
     }
 
+    app.get('/iuliu/my-business-card', users.getBussinesCardFront);
+    app.get('/iuliu/my-business-card-back', users.getBussinesCardBack);
+    app.get('/base-qr-code.svg', users.downloadBaseQrCode);
     app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
     app.get('/:restaurantSlug/my-qr-holder', users.getQrHolder);
     app.get('/:restaurantSlug', users.showMenuIfValidSlug);

@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Iuliu @ TouchFreeMenu.ro - Business Card</title>
+    <link rel="icon" href="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" sizes="16x16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#303336" />
+    <style>
+      .business-card {
+        font-family: 'Open Sans', sans-serif;
+        height: 100%;
+        color: #263238;
+        width: 85mm;
+        height: 55mm;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        position: relative;
+
+        /* border: 1px solid black;
+        margin: 100px;
+        box-shadow: -5px 6px 6px 0px #3334; */
+      }
+
+      .right-logo {
+        flex-shrink: 0;
+        margin-top: 0.6mm;
+        position: relative;
+        left: -12.5mm;
+      }
+
+      .info {
+        padding: 6mm;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .info > div {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% / 3);
+        flex-shrink: 0;
+      }
+
+      .info > .brand {
+        flex-direction: row;
+      }
+
+      .info > .person {
+        justify-content: center;
+      }
+
+      .info > .contact {
+        justify-content: flex-end;
+        flex-direction: row;
+      }
+
+      .info .contact-texts {
+        padding-top: 2.6mm;
+        margin-left: 0.5mm;
+      }
+
+      .website {
+        margin-bottom: 0.2mm;
+      }
+
+      .name {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .website {
+        line-height: 1;
+      }
+
+      .guide {
+        position: absolute;
+        width: 100vw;
+        top: 0;
+        bottom: 0;
+        height: 0.1px;
+        margin: auto;
+        background: red;
+      }
+
+      @media print {
+        @page {
+          size: 85mm 55mm;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0">
+    <div class="business-card">
+      <!-- <div class="guide"></div> -->
+      <div class="info">
+        <div class="brand">
+          <img style="height: 7mm; margin-right: 2mm" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+          <span style="margin-top: 0.3mm; font-size: 17px">Touch-Free Menu™</span>
+        </div>
+        <div class="person" style="margin-top: -6mm">
+          <div class="name">IULIU VIȘOVAN</div>
+          <div style="margin-top: -1mm">Founder</div>
+        </div>
+        <div class="contact">
+          <div class="qr-code">
+            <img style="height: 15mm; margin-left: -1.7mm; margin-top: 1mm" src="/base-qr-code.svg" alt="QR Code" />
+          </div>
+          <div class="contact-texts">
+            <div class="website" style="margin-bottom: 0.4mm">tfmn.ro</div>
+            <div class="website">+40 754 263 001</div>
+            <div class="website">contact@touchfreemenu.ro</div>
+          </div>
+        </div>
+      </div>
+      <div class="right-logo">
+        <img style="height: 83mm; margin-right: -53mm; opacity: 0.6" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+        <img style="height: 83mm; margin-right: -37mm" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+      </div>
+    </div>
+  </body>
+</html>
