@@ -11,7 +11,7 @@ moment.locale('ro');
 AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.login = (req, res, next) => {
-  if(!req.body.username?.length || !req.body.password?.length) {
+  if (!req.body.username?.length || !req.body.password?.length) {
     return res.status(422).json({ message: 'Introdu un nume de utilizator și o parolă' });
   }
 
@@ -96,7 +96,7 @@ exports.validate = (method) => {
       body('logoUrl').exists().withMessage('is required'),
       body('coverPhotoUrl').exists().withMessage('is required'),
       body('city').exists().withMessage('is required'),
-      body('coords').exists().withMessage('is required'),
+      body('coords').exists().withMessage('is required')
     );
   }
 
@@ -123,6 +123,22 @@ exports.downloadQrCode = async (req, res, next) => {
   }
 };
 
+exports.downloadBaseQrCode = async (req, res, next) => {
+  try {
+    const { restaurantSlug } = req.params;
+
+    QRCode.toString(`tfmn.ro`, { type: 'svg', color: { dark: '#263238' } }, function (err, xml) {
+      res.set({
+        'Content-Type': 'image/svg+xml',
+        'Content-Disposition': 'attachment',
+      });
+      res.send(xml);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.getQrHolder = async (req, res, next) => {
   try {
     const { restaurantSlug } = req.params;
@@ -132,6 +148,22 @@ exports.getQrHolder = async (req, res, next) => {
     } else {
       return res.sendStatus(404);
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getBussinesCardFront = async (req, res, next) => {
+  try {
+    return res.render('business-card');
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getBussinesCardBack = async (req, res, next) => {
+  try {
+    return res.render('business-card-back');
   } catch (err) {
     next(err);
   }
