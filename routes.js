@@ -47,6 +47,8 @@ module.exports = (app) => {
 
     app.get('/iuliu/my-business-card', users.getBussinesCardFront);
     app.get('/iuliu/my-business-card-back', users.getBussinesCardBack);
+    app.get('/iuliu/flyer', users.getFlyerFront);
+    app.get('/iuliu/flyer-back', users.getFlyerBack);
     app.get('/base-qr-code.svg', users.downloadBaseQrCode);
     app.get('/:restaurantSlug/my-qr-code.svg', users.downloadQrCode);
     app.get('/:restaurantSlug/my-qr-holder', users.getQrHolder);

@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Iuliu @ TouchFreeMenu.ro - Business Card Back</title>
+    <link rel="icon" href="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" sizes="16x16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#303336" />
+    <style>
+      .bleed {
+        padding: 4mm;
+        overflow: hidden;
+        display: inline-block;
+        background: #7ac943;
+        /* border: 1px solid red; */
+      }
+
+      .business-card {
+        height: 100%;
+        width: 85mm;
+        height: 55mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* 
+        border: 1px solid black;
+        margin: 100px;
+        box-shadow: -5px 6px 6px 0px #3334; */
+      }
+
+      .logo {
+        flex-shrink: 0;
+        margin-top: 0.6mm;
+        position: relative;
+        width: 70px;
+      }
+
+      @media print {
+        @page {
+          size: 93mm 63mm;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0">
+    <div class="bleed">
+      <div class="business-card">
+        <!-- <div class="guide"></div> -->
+        <img class="logo" src="https://www.touchfreemenu.ro/img/logo_white.svg" type="image/png" />
+      </div>
+    </div>
+  </body>
+</html>
