@@ -9,28 +9,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/css-ionicons.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#303336" />
+    <script src="https://kit.fontawesome.com/2f166c40b2.js" crossorigin="anonymous"></script>
     <style>
       .bleed {
-        padding: 4mm;
+        font-family: 'Montserrat', sans-serif;
+
         overflow: hidden;
         display: inline-block;
+        width: 113mm;
         height: 156mm;
         box-sizing: border-box;
-        box-shadow: 0px 0px 6px 0px #f004;
+        /* box-shadow: 0px 0px 6px 0px #f004; */
+        position: relative;
+        color: #7ac943;
       }
 
       .flyer {
-        font-family: 'Montserrat', sans-serif;
         height: 100%;
         color: #263238;
         width: 105mm;
         height: 148mm;
         font-size: 14px;
-        position: relative;
+        position: absolute;
+        left: 4mm;
+        top: 4mm;
 
-        box-shadow: 1px 0px 6px 0px #3334;
+        box-shadow: 1px 0px 6px 0px #333;
+        z-index: 10;
+      }
+
+      .safety-area {
+        height: 100%;
+        width: 95mm;
+        height: 138mm;
+        font-size: 14px;
+        position: absolute;
+        left: 5mm;
+        top: 5mm;
+
+        border: 1px dotted #333;
+        z-index: 10;
       }
 
       .guide {
@@ -42,10 +63,174 @@
         left: -50px;
         margin: auto;
         background: #f004;
+        z-index: 100;
+      }
+
+      .guide.vertical {
+        position: absolute;
+        height: 100vw;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 0;
+        width: 0.1px;
+        top: -50px;
+        margin: auto;
+        background: #f004;
+        z-index: 100;
+      }
+
+      .cover-image-wrapper {
+        overflow: hidden;
       }
 
       .cover-image {
-        width: 100%;
+        width: 114%;
+        margin-top: -10mm;
+        margin-left: -15mm;
+      }
+
+      .green-bar img {
+        height: 60%;
+        margin-right: 2mm;
+      }
+
+      .big-logo-overlay {
+        position: absolute;
+        top: -70mm;
+        width: 299mm;
+        left: -95mm;
+        transform: rotate(-39deg);
+        z-index: 2;
+      }
+
+      .white-overlay {
+        position: absolute;
+        top: 65mm;
+        width: 50mm;
+        left: 0;
+        height: 20mm;
+        background: #fff;
+      }
+
+      .thingies {
+        position: absolute;
+        top: 45mm;
+        width: 50mm;
+        left: 3mm;
+        height: 20mm;
+        z-index: 4;
+        transform: rotate(63deg);
+      }
+
+      .behind {
+        z-index: 0;
+      }
+
+      .thingy {
+        background: #fff;
+        border-radius: 10px;
+        width: 15mm;
+        height: 3mm;
+        margin: 3mm 0;
+        box-shadow: 2px 2px 2px #201f14bb;
+      }
+
+      .rocket-head {
+        position: absolute;
+        width: 5mm;
+        left: 0;
+        top: 5.6mm;
+        transform: rotate(90deg);
+        background: #fff;
+        width: 3mm;
+        height: 3mm;
+      }
+
+      .title {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 82mm;
+        height: 30mm;
+        padding-top: 6mm;
+        font-size: 26px;
+        z-index: 5;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        position: absolute;
+        text-align: right;
+        top: 0;
+        bottom: 0;
+        right: 9mm;
+        margin: auto;
+        width: 73mm;
+        height: 30mm;
+        padding-top: 24mm;
+        font-size: 20px;
+        z-index: 5;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        font-weight: 300;
+      }
+
+      .body {
+        position: absolute;
+        text-align: right;
+        top: 80mm;
+        left: 0;
+        padding: 9mm;
+        z-index: 5;
+        font-weight: 300;
+        z-index: 20;
+        font-size: 14px;
+        box-sizing: border-box;
+        width: 113mm;
+      }
+
+      .perk {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        margin-top: 6mm;
+      }
+
+      .perk.right-aligned {
+        justify-content: flex-end;
+      }
+      .perk.right-aligned i {
+        order: 2;
+      }
+      .perk.right-aligned .name,
+      .perk.right-aligned .description {
+        text-align: right;
+      }
+
+      .perk.right-aligned .texts {
+        margin-left: 0;
+        margin-right: 2mm;
+      }
+
+      .perk .texts {
+        margin-left: 2mm;
+      }
+
+      .perk .name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .perk .description {
+        font-size: 11px;
+        font-weight: 500;
       }
 
       @media print {
@@ -56,14 +241,51 @@
     </style>
   </head>
 
-  <body style="margin: 0; display: flex; justify-content: center; align-items: center;">
+  <body style="margin: 0; display: flex; justify-content: center; align-items: center">
     <div class="bleed">
       <div class="flyer">
-        <img class="cover-image" src="https://www.touchfreemenu.ro/img/productimage.png">
-        <!-- <div class="main-logo">
-          <img src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
-        </div> -->
-        <div class="guide"></div>
+        <!-- <div class="safety-area"></div> -->
+      </div>
+
+      <div class="cover-image-wrapper">
+        <img class="cover-image" src="https://www.touchfreemenu.ro/img/productimage_uncompressed.png" />
+      </div>
+
+      <img class="big-logo-overlay" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+      <div class="thingies">
+        <div class="thingy" style="box-shadow: 2px 2px 4px #201f14bb"></div>
+        <div class="thingy" style="margin-left: 5mm"></div>
+        <div class="thingy" style="opacity: 0"></div>
+        <div class="thingy rocket-head"></div>
+      </div>
+      <div class="thingies behind">
+        <div class="thingy" style="opacity: 0"></div>
+        <div class="thingy" style="margin-left: 5mm; opacity: 0"></div>
+        <div class="thingy"></div>
+      </div>
+      <div class="white-overlay"></div>
+      <div class="guide"></div>
+      <div class="guide vertical"></div>
+
+      <div class="title">Touch-Free Menu</div>
+      <div class="subtitle">Cea mai bună versiune a meniului tău!</div>
+      <div class="body">
+        <div class="perk">
+          <i class="fas fa-laptop-code" style="color: #7ac943; font-size: 20px"></i>
+          <div class="texts">
+            <div class="name">Site-ul tău propriu</div>
+            <div class="description">Meniul restaurantului tău e afișat într-o <br />interfață web elegantă, adaptată brandului tău</div>
+          </div>
+        </div>
+        <div class="perk right-aligned">
+          <!-- <i class="fas fa-mug-hot" style="color: #7ac943; font-size: 16px; margin-right: -24px; margin-top: -23px"></i> -->
+          <!-- <i class="fas fa-pizza-slice" style="color: #56a220; font-size: 16px; margin-left: -23px; margin-bottom: -21px"></i> -->
+          <i class="fas fa-search" style="color: #7ac943; font-size: 20px"></i>
+          <div class="texts">
+            <div class="name">Răsfoirea, o plăcere</div>
+            <div class="description">Funcționalitățile de căutare, traducerea automată și navigarea facilă prin meniu oferă o experiență unică</div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
