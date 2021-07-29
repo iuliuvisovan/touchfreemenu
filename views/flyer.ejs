@@ -97,10 +97,10 @@
 
       .big-logo-overlay {
         position: absolute;
-        top: -70mm;
-        width: 299mm;
-        left: -95mm;
-        transform: rotate(-39deg);
+        top: -39mm;
+        width: 248mm;
+        left: -59mm;
+        transform: rotate(-41deg);
         z-index: 2;
       }
 
@@ -115,12 +115,13 @@
 
       .thingies {
         position: absolute;
-        top: 45mm;
+        top: 53mm;
         width: 50mm;
         left: 3mm;
         height: 20mm;
         z-index: 4;
         transform: rotate(63deg);
+        z-index: 100;
       }
 
       .behind {
@@ -153,10 +154,10 @@
         bottom: 0;
         left: 0;
         margin: auto;
-        width: 82mm;
-        height: 30mm;
+        width: 115mm;
+        height: 19mm;
         padding-top: 6mm;
-        font-size: 26px;
+        font-size: 24px;
         z-index: 5;
         color: #fff;
         display: flex;
@@ -171,10 +172,10 @@
         bottom: 0;
         right: 9mm;
         margin: auto;
-        width: 73mm;
-        height: 30mm;
+        width: 48mm;
+        height: 18mm;
         padding-top: 24mm;
-        font-size: 20px;
+        font-size: 16px;
         z-index: 5;
         color: #fff;
         display: flex;
@@ -233,6 +234,24 @@
         font-weight: 500;
       }
 
+      .food-icons {
+        position: absolute;
+        top: 55mm;
+        left: -46px;
+        height: 25mm;
+        width: 75mm;
+        /* border: 1px solid red; */
+        z-index: 100;
+        transform: rotate(23deg);
+        overflow: hidden;
+      }
+
+      .food-icons i {
+        position: absolute;
+        font-size: 24px;
+        color: #97dc66;
+      }
+
       @media print {
         @page {
           size: 113mm 156mm;
@@ -243,15 +262,30 @@
 
   <body style="margin: 0; display: flex; justify-content: center; align-items: center">
     <div class="bleed">
+      <!-- <div class="guide"></div>
+      <div class="guide vertical"></div> -->
       <div class="flyer">
-        <!-- <div class="safety-area"></div> -->
+        <div class="safety-area"></div>
       </div>
 
       <div class="cover-image-wrapper">
         <img class="cover-image" src="https://www.touchfreemenu.ro/img/productimage_uncompressed.png" />
       </div>
 
-      <img class="big-logo-overlay" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+      <div class="food-icons">
+        <i class="fas fa-carrot" style="left: 11mm; top: -1mm"></i>
+        <i class="fas fa-bacon" style="left: 14mm; top: 3mm"></i>
+        <i class="fas fa-pizza-slice" style="left: 14mm; top: 12mm; transform: rotate(-128deg)"></i>
+        <i class="fas fa-hotdog" style="left: 18.5mm; top: 19mm"></i>
+        <i class="fas fa-cheese" style="left: 20mm; top: 6mm"></i>
+        <i class="fas fa-mug-hot" style="left: 24.5mm; top: 12.5mm; transform: rotate(-12deg)"></i>
+        <i class="fas fa-ice-cream" style="left: 31mm; top: 18mm"></i>
+        <i class="fas fa-fish" style="left: 32mm; top: 11mm"></i>
+        <i class="fas fa-cookie" style="left: 22mm; top: -1mm"></i>
+        <i class="fas fa-pepper-hot" style="left: 29mm; top: 6mm; transform: rotate(210deg)"></i>
+      </div>
+
+      <img class="big-logo-overlay" src="https://www.touchfreemenu.ro/img/logo_line.svg" type="image/png" />
       <div class="thingies">
         <div class="thingy" style="box-shadow: 2px 2px 4px #201f14bb"></div>
         <div class="thingy" style="margin-left: 5mm"></div>
@@ -264,11 +298,9 @@
         <div class="thingy"></div>
       </div>
       <div class="white-overlay"></div>
-      <div class="guide"></div>
-      <div class="guide vertical"></div>
 
       <div class="title">Touch-Free Menu</div>
-      <div class="subtitle">Cea mai bună versiune a meniului tău!</div>
+      <div class="subtitle">Cea mai bună versiune <br />a meniului tău!</div>
       <div class="body">
         <div class="perk">
           <i class="fas fa-laptop-code" style="color: #7ac943; font-size: 20px"></i>
