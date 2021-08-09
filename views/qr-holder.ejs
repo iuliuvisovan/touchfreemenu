@@ -10,10 +10,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#303336" />
     <style>
-      .qr-holder {
+      .bleed {
         font-family: 'Kumbh Sans', sans-serif;
-        height: 100%;
+
+        overflow: hidden;
+        display: inline-block;
+        width: 113mm;
+        height: 156mm;
+        box-sizing: border-box;
+        position: relative;
         color: #303336;
+
+        /* box-shadow: 0px 0px 6px 0px #f004; */
+      }
+
+      .shadow {
+        height: 100%;
+        color: #263238;
+        width: 105mm;
+        height: 148mm;
+        font-size: 14px;
+        position: absolute;
+        left: 4mm;
+        top: 4mm;
+
+        box-shadow: 1px 0px 6px 0px #333;
+        z-index: 10;
+      }
+
+      .safety-area {
+        height: 100%;
+        width: 95mm;
+        height: 138mm;
+        font-size: 14px;
+        position: absolute;
+        left: 5mm;
+        top: 5mm;
+
+        border: 1px dotted #333;
+        z-index: 10;
       }
 
       .restaurant-logo {
@@ -28,12 +63,15 @@
       }
 
       .footer {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
-        width: 100vw;
-        height: 42px;
-        padding: 0 10px;
+        width: 100%;
+        height: calc(42px + 4mm);
+        padding-top: 0;
+        padding-bottom: 4mm;
+        padding-right: calc(10px + 4mm);
+        padding-left: calc(10px + 4mm);
         background: #f0f0f0;
         display: flex;
         align-items: center;
@@ -41,26 +79,32 @@
         box-sizing: border-box;
       }
 
+      .slug {
+        border-radius: 28px;
+        border: 0.5px dashed #fff0;
+        color: #9ca0a4;
+        margin-top: 2px;
+      }
+
       @media print {
         @page {
-          size: 105mm 148mm;
+          size: 113mm 156mm;
         }
       }
     </style>
   </head>
 
-  <body style="margin: 0">
-    <div class="qr-holder">
+  <body style="margin: 0; display: flex; justify-content: center; align-items: center">
+    <div class="bleed">
+      <!-- <div class="shadow">
+        <div class="safety-area"></div>
+      </div> -->
       <div class="content">
         <div style="display: flex; justify-content: center">
           <img src="<%- logoUrl %>" alt="Restaurant Logo" class="restaurant-logo" />
         </div>
         <div style="display: flex; justify-content: center">
-          <img
-            style="height: 308px; margin-top: -8px; position: relative; z-index: -1"
-            src="/<%- restaurantSlug %>/my-qr-code.svg"
-            alt="QR Code"
-          />
+          <img style="height: 308px; margin-top: -8px; position: relative; z-index: -1" src="/<%- restaurantSlug %>/my-qr-code.svg" alt="QR Code" />
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
           <span style="font-size: 15px; margin-bottom: 2px; margin-top: -8px">SCAN ME FOR THE</span>
@@ -68,19 +112,13 @@
         </div>
         <div class="footer">
           <div style="display: flex; align-items: center">
-            <img
-              style="width: 13px; margin-right: 10px; margin-left: 4px"
-              src="https://www.touchfreemenu.ro/img/logo.svg"
-              type="image/png"
-            />
+            <img style="width: 13px; margin-right: 10px; margin-left: 4px" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
             <div style="display: flex; justify-content: center; flex-direction: column">
               <span style="font-size: 11px">Powered by Touch-Free Menu™</span>
-              <span style="font-size: 8px; color: #9ca0a4; margin-top: 1px; margin-bottom: -2px; letter-spacing: 0.2px"
-                >www.touchfreemenu.ro</span
-              >
+              <span style="font-size: 8px; color: #9ca0a4; margin-top: 1px; margin-bottom: -2px; letter-spacing: 0.2px">www.touchfreemenu.ro</span>
             </div>
           </div>
-          <div style="border-radius: 28px; border: 0.5px dashed #fff0; color: #9ca0a4; margin-top: 2px">
+          <div class="slug">
             <span style="font-size: 9px; margin-right: 2px">tfmn.ro/<b><%- restaurantSlug %></b></span>
           </div>
         </div>
