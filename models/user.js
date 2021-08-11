@@ -11,13 +11,13 @@ const userSchema = new mongoose.Schema(
     joinDate: Date,
     themeColor: String,
     city: String,
-    usesFullWidthLogo: { type: Boolean, default: false },
+    logoWidthPercentage: { type: Number },
     coords: {
       latitude: Number,
       longitude: Number,
     },
   },
-  { collation: { locale: 'en', strength: 1 } },
+  { collation: { locale: 'en', strength: 1 } }
 );
 
 userSchema.set('toJSON', { getters: true });
