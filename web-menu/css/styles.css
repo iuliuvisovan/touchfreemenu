@@ -15,7 +15,7 @@ body {
 }
 
 h1 {
-  font-weight: 100;
+  font-weight: 400;
   font-size: 30px;
   text-align: center;
   line-height: 42px;
@@ -26,7 +26,7 @@ h1 {
 
 h2 {
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 4px;
   font-size: 15px;
   color: #fff;
