@@ -29,10 +29,12 @@
         <h1><%- restaurant.name %></h1>
         <h2 language="RO">Meniu</h2>
         <h2 language="EN">Menu</h2>
-        <div class="language-picker">
+        <div onclick="toggleLanguage()" class="language-picker">
           <div class="language-picker-button">
-            <span onclick="toggleLanguage()" language="RO">🇷🇴</span>
-            <span onclick="toggleLanguage()" language="EN">🇬🇧</span>
+            <div class="img-wrapper">
+              <img language="RO" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/48/flag-for-romania_1f1f7-1f1f4.png" alt="Flag of Romania" />
+              <img language="EN" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-united-kingdom_1f1ec-1f1e7.png" alt="Flag of United Kingdom" />
+            </div>
           </div>
         </div>
       </div>
@@ -40,24 +42,8 @@
         <div class="search-icon">
           <i class="fas fa-search"></i>
         </div>
-        <input
-          onkeyup="search(this.value)"
-          onfocus="scrollToInput()"
-          autocorrect="off"
-          autocapitalize="none"
-          type="text"
-          language="RO"
-          placeholder="Caută"
-        />
-        <input
-          onkeyup="search(this.value)"
-          onfocus="scrollToInput()"
-          type="text"
-          autocorrect="off"
-          autocapitalize="none"
-          language="EN"
-          placeholder="Search"
-        />
+        <input onkeyup="search(this.value)" onfocus="scrollToInput()" autocorrect="off" autocapitalize="none" type="text" language="RO" placeholder="Caută" />
+        <input onkeyup="search(this.value)" onfocus="scrollToInput()" type="text" autocorrect="off" autocapitalize="none" language="EN" placeholder="Search" />
         <div onclick="clearInput()" id="clearButton" class="clear-icon">
           <i class="fas fa-times"></i>
         </div>
@@ -94,15 +80,10 @@
                 <%- product.price.toString().replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %> RON
               </div>
               <% if(product.isDiscounted && product.discountedPrice) { %>
-              <div class="discounted-price">
-                <%- product.discountedPrice.toString().replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %> RON
-              </div>
+              <div class="discounted-price"><%- product.discountedPrice.toString().replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %> RON</div>
               <% } %>
               <div class="euro-equivalent">
-                <span language="EN">
-                  ~<%- ((product.isDiscounted ? product.discountedPrice : product.price) / 4.93).toFixed(2).replace('.', ',')
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %>€
-                </span>
+                <span language="EN"> ~<%- ((product.isDiscounted ? product.discountedPrice : product.price) / 4.93).toFixed(2).replace('.', ',') .replace(/\B(?=(\d{3})+(?!\d))/g, '.') %>€ </span>
               </div>
             </div>
             <% if(product.imageUrl) { %>
