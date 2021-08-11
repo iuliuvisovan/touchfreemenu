@@ -203,7 +203,7 @@ h2 {
   font-size: 12px;
   margin-bottom: 16px;
   margin-top: -4px;
-  color: #22181888
+  color: #22181888;
 }
 
 .products-wrapper {
@@ -375,6 +375,16 @@ highlighted {
   align-items: center;
 }
 
+.img-wrapper {
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+}
+
+.img-wrapper img {
+  width: 20px;
+}
+
 .language-picker span {
   font-size: 20px;
 }
@@ -428,7 +438,7 @@ highlighted {
   text-align: center;
   margin-top: 15vh;
 }
- 
+
 .euro-equivalent {
   display: inline-block;
   font-size: 12px;
