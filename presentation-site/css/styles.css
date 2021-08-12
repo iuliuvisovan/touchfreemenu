@@ -1895,6 +1895,18 @@ ul#countdown li {
   box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
 }
 
+.nav-button {
+  background-color: #7ac944;
+  color: #fff !important;
+  border-radius: 30px;
+  padding: 5px 5px;
+  margin-right: 0!important;
+}
+
+.nav-button a {
+  color: #fff !important;
+}
+
 .yd_tabs a {
   font-family: 'Montserrat';
   font-size: 16px;
@@ -2931,8 +2943,8 @@ ul#countdown li {
   }
 
   .container-s {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .container-m {
@@ -3353,4 +3365,8 @@ ul#countdown li {
     left: 15%;
     bottom: -25%;
   }
+}
+
+.navbar-right {
+  padding-right: 0;
 }
