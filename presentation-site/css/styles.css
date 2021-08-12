@@ -1900,7 +1900,7 @@ ul#countdown li {
   color: #fff !important;
   border-radius: 30px;
   padding: 5px 5px;
-  margin-right: 0!important;
+  margin-right: 0 !important;
 }
 
 .nav-button a {
@@ -3369,4 +3369,61 @@ ul#countdown li {
 
 .navbar-right {
   padding-right: 0;
+}
+
+#screenshots {
+  padding-top: 0px;
+  position: relative;
+}
+
+#screenshots > div {
+  display: flex;
+  justify-content: center;
+}
+
+.screenshot {
+  height: 600px;
+  margin: 0 25px;
+  position: relative;
+}
+
+.screenshot img {
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  opacity: 0.17;
+  filter: blur(2px);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tag {
+  height: 30px;
+  position: absolute;
+  height: 20px;
+  width: 140px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border: 0;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  letter-spacing: 0;
+  z-index: 0;
+  opacity: 0;
+  text-align: right;
+
+  font-size: 25px;
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.screenshot.active .tag {
+  transform: translateX(-160px);
+  opacity: 1;
+}
+
+.screenshot.active img {
+  opacity: 1;
+  transform: scale(1.13);
+  filter: none;
 }
