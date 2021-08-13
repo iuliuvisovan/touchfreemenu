@@ -127,3 +127,11 @@ function hideKeyboard() {
     }
   }, 0);
 }
+
+function scrollToCategory(categoryId) {
+  const yOffset = -66;
+  const element = document.getElementById(categoryId);
+  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}

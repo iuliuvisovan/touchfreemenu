@@ -53,11 +53,19 @@
           <i class="fas fa-times"></i>
         </div>
       </div>
+      <div class="categories-wrapper">
+        <% restaurant.categories.forEach(function(category) { %>
+        <div onclick="scrollToCategory('<%- category._id %>')" class="category-button">
+          <span language="RO"><%- category.name %></span>
+          <span language="EN"><%- category.nameEn %></span>
+        </div>
+        <% }); %>
+      </div>
       <div class="products-wrapper">
         <% if(!restaurant.categories.length) { %>
         <p class="no-products">Niciun produs aici încă. 🤔</p>
         <% } %> <% restaurant.categories.forEach(function(category) { %>
-        <div class="category">
+        <div id="<%- category._id %>" class="category">
           <div language="RO" class="category-name"><%- category.name %></div>
           <div language="EN" class="category-name"><%- category.nameEn %></div>
           <div language="RO" class="category-description"><%- category.description %></div>
