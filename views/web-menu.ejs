@@ -76,7 +76,7 @@
               <% if(product.description?.length) { %>
               <div class="expanded-info">
                 <div language="RO" class="description"><%- product.description[0].toUpperCase() + product.description.slice(1) %></div>
-                <div language="EN" class="description"><%- product.descriptionEn[0].toUpperCase() + product.descriptionEn.slice(1) %></div>
+                <div language="EN" class="description"><%- (product.descriptionEn[0] || '').toUpperCase() + (product.descriptionEn || '').slice(1) %></div>
               </div>
 
               <% } %>
