@@ -794,12 +794,13 @@ body {
 
 .home-3 .hero-content p {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   max-width: none;
   letter-spacing: 0;
   line-height: 1.6;
   margin-top: 0;
   margin-bottom: 0;
+  color: #7ac943;
 }
 
 .home-3 .hero-img img {
@@ -3461,4 +3462,32 @@ ul#countdown li {
 
 .fixed-top {
   width: 100vw;
+}
+
+.how-does-it-work {
+  height: 240px;
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.how-does-it-work i {
+  position: absolute;
+  bottom: -30px;
+  left: 321px;
+}
+
+.how-does-it-work img {
+  height: 100%;
+}
+
+.how-does-it-work .img-wrapper {
+  height: 100%;
+  width: 356px;
+  overflow: hidden;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0px 30px #303c4214;
 }
