@@ -13,6 +13,6 @@ jQuery(function ($) {
     $('.screenshot').removeClass('active');
     setTimeout(() => {
       $($('.screenshot')[currentActiveScreenshotIndex]).addClass('active');
-    }, 500);
-  }, 5000);
+    }, 700);
+  }, 3200);
 });

@@ -3390,9 +3390,9 @@ ul#countdown li {
 .screenshot img {
   height: 100%;
   position: relative;
-  z-index: 10;
-  opacity: 0.17;
+  opacity: 0.25;
   filter: blur(2px);
+  translate: rotate(0deg);
   transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
