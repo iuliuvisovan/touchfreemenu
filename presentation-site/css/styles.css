@@ -781,14 +781,23 @@ body {
   line-height: 1.2;
 }
 
+.home-3 .hero-content h2 {
+  margin-bottom: 0 !important;
+}
+
+.home-3 .hero-content h3 {
+  font-size: 30px;
+  margin-top: 32px;
+  font-weight: 200;
+}
+
 .home-3 .hero-content p {
   font-size: 18px;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
   max-width: none;
   letter-spacing: 0;
   line-height: 1.6;
-  margin-top: 25px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -1499,7 +1508,7 @@ ul#countdown li {
 
 .flex-split {
   padding: 50px 0;
-  background: #f7f7f8;
+  background: #f9f9f9;
 }
 
 .footer {
@@ -2976,6 +2985,10 @@ ul#countdown li {
     text-align: left;
   } */
 
+  .home-3 {
+    min-height: 420px !important;
+  }
+
   .home-3 .hero-img img {
     transform: translateX(80px);
     box-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
@@ -3372,7 +3385,7 @@ ul#countdown li {
 }
 
 #screenshots {
-  padding-top: 0px;
+  padding-top: 20px;
   position: relative;
 }
 
@@ -3426,4 +3439,25 @@ ul#countdown li {
   opacity: 1;
   transform: scale(1.13);
   filter: none;
+}
+
+.big-logo {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.navbar-logo {
+  width: 24px;
+}
+
+.apply-now {
+  font-size: 24px;
+  font-weight: 600;
+  color: #364655;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.fixed-top {
+  width: 100vw;
 }
