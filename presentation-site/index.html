@@ -36,7 +36,7 @@
         <div class="container container-m">
           <div style="display: flex; align-items: center">
             <img class="navbar-logo" src="img/logo.svg" class="navbar-logo" />
-            <a class="navbar-brand" href="https://touchfreemenu.ro">tfmn.ro</a>
+            <a class="navbar-brand js-scroll-trigger" href="#main">tfmn.ro</a>
           </div>
           <button
             class="navbar-toggler"
@@ -51,10 +51,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto navbar-right">
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#main">Acasă</a></li>
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#features">Beneficii</a></li>
               <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#howitworks">Cum funcționează?</a></li>
-              <li class="nav-item nav-button"><a class="nav-link js-scroll-trigger" target="_blank" href="https://admin.touchfreemenu.ro">Login</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#benefits">Beneficii</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#applyNow">Aplică</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+              <li class="nav-item green-button"><a class="nav-link js-scroll-trigger" target="_blank" href="https://admin.touchfreemenu.ro">Login</a></li>
             </ul>
           </div>
         </div>
@@ -179,8 +180,8 @@
         </div>
         <!-- END How it works Section -->
 
-        <!-- Features Section -->
-        <div id="features" class="flex-split">
+        <!-- Benefits Section -->
+        <div id="benefits" class="flex-split">
           <div class="container-s">
             <div class="flex-intro align-center wow fadeIn"><h2>De ce să treci la un meniu digital?</h2></div>
             <div class="flex-inner align-center">
@@ -227,10 +228,10 @@
           </div>
         </div>
 
-        <!-- END Features Section -->
+        <!-- END Benefits Section -->
 
         <!-- Perks section -->
-        <div id="services" class="lbl-services">
+        <div id="applyNow" class="lbl-services">
           <div class="container">
             <div class="row justify-center">
               <div class="col-md-8">
@@ -240,41 +241,16 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="lbl_cards">
-              <div class="card_single card2">
-                <div class="card-icon">
-                  <div class="card-img"><img src="img/ease.png" width="50" alt="Feature" /></div>
-                </div>
-                <div class="card-text">
-                  <h3>Rapid de accesat</h3>
-                  <p>Clienții pot începe răsfoirea meniului tău din momentul așezării la masă.</p>
-                </div>
-              </div>
-              <div class="card_single">
-                <div class="card-icon">
-                  <div class="card-img"><img src="img/safety.png" width="50" alt="Feature" /></div>
-                </div>
-                <div class="card-text">
-                  <h3>Sigur și igienic</h3>
-                  <p>Siguranță sporită prin reducerea interacțiunii dintre personal și clienți.</p>
-                </div>
-              </div>
-              <div class="card_single card3">
-                <div class="card-icon">
-                  <div class="card-img"><img src="img/questionnaire.png" width="50" alt="Feature" /></div>
-                </div>
-                <div class="card-text">
-                  <h3>Ușor de vizionat</h3>
-                  <p>Găsire rapidă a preparatelor prin funcționalități inteligente de căutare.</p>
-                </div>
-              </div>
-            </div> -->
             <h1 class="apply-now">Aplică acum!</h1>
             <div class="form">
               <input id="emailInput" style="width: 280px" class="mail" type="email" name="email" placeholder="Adresa ta de e-mail" autocomplete="off" />
               <input id="submitButton" class="submit-button" type="button" value="Aplică!" />
               <div id="error"></div>
               <div id="success"></div>
+            </div>
+            <p class="already-a-client">Deja client? </p>
+            <div class="authenticate-wrapper">
+              <a class="green-link" href="https://admin.touchfreemenu.ro">Accesează interfața de admin</a>
             </div>
           </div>
         </div>

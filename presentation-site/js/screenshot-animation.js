@@ -14,5 +14,5 @@ jQuery(function ($) {
     setTimeout(() => {
       $($('.screenshot')[currentActiveScreenshotIndex]).addClass('active');
     }, 700);
-  }, 2800);
+  }, 3200);
 });

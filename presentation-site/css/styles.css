@@ -1262,7 +1262,6 @@ ul#countdown li {
 }
 
 .form input {
-  color: #222222;
   font-family: 'Montserrat';
   padding: 0;
   font-size: 14px;
@@ -1270,10 +1269,11 @@ ul#countdown li {
   height: 45px;
   border: 0;
   border-radius: 30px;
-  background-color: #efefef;
+  background-color: #f9f9f9;
   outline: none;
   padding: 0 50px 0 20px;
-  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 30px rgb(255 255 255 / 10%);
+  border: 1px solid #81819844;
 }
 
 .form input:focus {
@@ -1401,6 +1401,10 @@ ul#countdown li {
 .justify-center {
   justify-content: center !important;
   display: flex;
+}
+
+::placeholder {
+  color: #818198;
 }
 
 .lbl_cards {
@@ -1906,15 +1910,16 @@ ul#countdown li {
   box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
 }
 
-.nav-button {
+.green-button {
   background-color: #7ac944;
   color: #fff !important;
   border-radius: 30px;
   padding: 5px 5px;
   margin-right: 0 !important;
+  font-family: 'Open Sans';
 }
 
-.nav-button a {
+.green-button a {
   color: #fff !important;
 }
 
@@ -3454,9 +3459,9 @@ ul#countdown li {
 
 .apply-now {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   color: #364655;
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -3490,4 +3495,26 @@ ul#countdown li {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0px 30px #303c4214;
+}
+
+.already-a-client {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 150px;
+  color: #818198;
+}
+
+.authenticate-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+ 
+.green-link {
+  color: #7ac944;
+  font-family: 'Open Sans';
+  text-decoration: underline;
+  margin-left: 8px;
 }
