@@ -138,12 +138,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 16px;
 }
 
 p {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 14px;
 }
 
@@ -219,6 +219,14 @@ body {
   text-align: center;
 }
 
+.wrapper {
+  background: #f9f9f9;
+}
+
+#main {
+  overflow-y: hidden;
+}
+
 #loading-image {
   display: inline;
   top: 40%;
@@ -291,6 +299,7 @@ body {
   letter-spacing: 0px;
   color: #333347 !important;
   vertical-align: middle;
+  margin-left: 16px;
 }
 
 .navbar .navbar-brand img {
@@ -415,7 +424,23 @@ body {
   color: #ffffff !important;
 }
 
+.only-mobile {
+  display: none !important;
+}
+
+.only-desktop {
+  display: flex;
+}
+
 @media only screen and (max-width: 767px) {
+  .only-mobile {
+    display: block !important;
+  }
+
+  .only-desktop {
+    display: none !important;
+  }
+
   .navbar {
     padding: 15px;
   }
@@ -439,6 +464,76 @@ body {
 
   .navbar .btn-cta {
     padding: 0 30px;
+  }
+
+  .home-3 {
+    padding-bottom: 0 !important;
+    padding-top: 90px !important;
+    min-height: 0px !important;
+  }
+
+  .big-logo {
+    width: 40px !important;
+  }
+
+  h2 {
+    font-size: 32px !important;
+  }
+
+  h2 ~ p {
+    font-size: 16px !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  #screenshots {
+    padding-top: 50px !important;
+    transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .screenshot {
+    height: 300px !important;
+  }
+
+  .tag {
+    font-size: 18px !important;
+  }
+
+  .screenshot.active .tag {
+    transform: translateX(-150px) !important;
+    opacity: 1;
+  }
+
+  .f-text {
+    padding: 0 !important;
+    margin-top: 19px !important;
+  }
+
+  .f-text p {
+    text-align: center !important;
+  }
+
+  .how-does-it-work .img-wrapper {
+    width: calc(100vw - 80px) !important;
+  }
+
+  .how-does-it-work {
+    margin-bottom: 16px !important;
+    margin-top: 64px !important;
+  }
+
+  .scrolled-to-1 {
+    transform: translateX(202px);
+  }
+
+  .scrolled-to-2 {
+    transform: translateX(0px);
+  }
+
+  .scrolled-to-3 {
+    transform: translateX(-202px);
   }
 }
 
@@ -781,15 +876,25 @@ body {
   line-height: 1.2;
 }
 
+.home-3 .hero-content h2 {
+  margin-bottom: 0 !important;
+}
+
+.home-3 .hero-content h3 {
+  font-size: 30px;
+  margin-top: 32px;
+  font-weight: 200;
+}
+
 .home-3 .hero-content p {
   font-size: 18px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
   max-width: none;
   letter-spacing: 0;
   line-height: 1.6;
-  margin-top: 25px;
+  margin-top: 0;
   margin-bottom: 0;
+  color: #7ac943;
 }
 
 .home-3 .hero-img img {
@@ -1251,7 +1356,6 @@ ul#countdown li {
 }
 
 .form input {
-  color: #222222;
   font-family: 'Montserrat';
   padding: 0;
   font-size: 14px;
@@ -1259,10 +1363,11 @@ ul#countdown li {
   height: 45px;
   border: 0;
   border-radius: 30px;
-  background-color: #efefef;
+  background-color: #f9f9f9;
   outline: none;
   padding: 0 50px 0 20px;
-  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 30px rgb(255 255 255 / 10%);
+  border: 1px solid #81819844;
 }
 
 .form input:focus {
@@ -1378,7 +1483,7 @@ ul#countdown li {
   margin-bottom: 20px;
 }
 
-.service-intro p {
+#applyNow p {
   font-size: 16px;
   font-weight: 400;
   color: rgb(129, 129, 152);
@@ -1390,6 +1495,10 @@ ul#countdown li {
 .justify-center {
   justify-content: center !important;
   display: flex;
+}
+
+::placeholder {
+  color: #818198;
 }
 
 .lbl_cards {
@@ -1499,7 +1608,7 @@ ul#countdown li {
 
 .flex-split {
   padding: 50px 0;
-  background: #f7f7f8;
+  background: #f9f9f9;
 }
 
 .footer {
@@ -1567,30 +1676,34 @@ ul#countdown li {
 
 .flex-inner .f-text h2 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   color: #3a3a47;
   line-height: 1.3;
   margin-top: 25px;
 }
 
 .flex-inner .f-text p {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 0.01em;
-  color: #818198;
+  color: #71717e;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
 .flex-inner .f-text .left-content a {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 500;
   color: #8798ab;
   position: relative;
   display: inline-block;
   text-decoration: none;
+}
+
+.left-content p, .left-content h2 {
+  text-align: right;
 }
 
 .flex-inner .f-text .left-content a::after {
@@ -1895,15 +2008,16 @@ ul#countdown li {
   box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
 }
 
-.nav-button {
+.green-button {
   background-color: #7ac944;
   color: #fff !important;
   border-radius: 30px;
-  padding: 5px 5px;
+  padding: 5px 12px;
   margin-right: 0 !important;
+  font-family: 'Montserrat';
 }
 
-.nav-button a {
+.green-button a {
   color: #fff !important;
 }
 
@@ -2163,7 +2277,7 @@ ul#countdown li {
 }
 
 .yd_clients .flx_2 a {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 400;
   color: #7ac944;
@@ -2372,7 +2486,7 @@ ul#countdown li {
 
 .yd_faqs .faq_inner a {
   display: inline;
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   color: #7ac944;
   font-size: 14px;
   font-weight: 400;
@@ -2404,7 +2518,7 @@ ul#countdown li {
 }
 
 #accordion .card-header .card-title {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 18px;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
@@ -2623,7 +2737,7 @@ ul#countdown li {
 }
 
 .yd_pricing .btn-link {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   color: #7ac944;
   font-size: 13px;
   font-weight: 400;
@@ -2661,7 +2775,7 @@ ul#countdown li {
 }
 
 .yd_pricing .prc_box .prc span {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 500;
   color: #f7f7f8;
@@ -2768,7 +2882,7 @@ ul#countdown li {
 .table-left .pricing-details span,
 .table-right .pricing-details span {
   display: inline-block;
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 42px;
   font-weight: 300;
   color: #505050;
@@ -2776,7 +2890,7 @@ ul#countdown li {
 }
 
 .sub_span {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   font-size: 15px;
   font-weight: 400;
   color: #505050;
@@ -2908,6 +3022,10 @@ ul#countdown li {
   color: #97a6b5;
 }
 
+.navbar.past-main .nav-item:hover .nav-link {
+  color: #7ac944;
+}
+
 .footer .footer-links ul li {
   margin-left: 10px;
   margin-right: 10px;
@@ -2976,6 +3094,10 @@ ul#countdown li {
     text-align: left;
   } */
 
+  .home-3 {
+    min-height: 420px !important;
+  }
+
   .home-3 .hero-img img {
     transform: translateX(80px);
     box-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
@@ -2994,8 +3116,10 @@ ul#countdown li {
     width: calc(33.333% - 2px);
   }
 
-  .flex-split {
-    padding: 100px 0;
+  .flex-split,
+  .lbl-services {
+    padding: 80px 0 !important;
+    padding-bottom: 150px !important;
   }
 
   .flex-intro h2 {
@@ -3114,8 +3238,12 @@ ul#countdown li {
   }
 
   .flex-inner .f-text p {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  #howitworks .f-text p {
+    padding: 0 16px !important;
   }
 
   .yd_flex {
@@ -3372,8 +3500,10 @@ ul#countdown li {
 }
 
 #screenshots {
-  padding-top: 0px;
   position: relative;
+  padding: 20px 0;
+  padding-bottom: 80px;
+  background: #f9f9f9;
 }
 
 #screenshots > div {
@@ -3392,7 +3522,6 @@ ul#countdown li {
   position: relative;
   opacity: 0.25;
   filter: blur(2px);
-  translate: rotate(0deg);
   transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -3426,4 +3555,103 @@ ul#countdown li {
   opacity: 1;
   transform: scale(1.13);
   filter: none;
+}
+
+.big-logo {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.navbar-logo {
+  width: 24px;
+}
+
+.apply-now {
+  font-size: 24px;
+  font-weight: 500;
+  color: #364655;
+  margin-top: 30px;
+}
+
+.fixed-top {
+  width: 100vw;
+}
+
+.how-does-it-work {
+  height: 240px;
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.how-does-it-work i {
+  position: absolute;
+  bottom: -30px;
+  right: -28px;
+  z-index: 1;
+}
+
+.how-does-it-work img {
+  height: 100%;
+}
+
+.how-does-it-work .img-wrapper {
+  height: 100%;
+  width: 356px;
+  overflow: hidden;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0px 30px #303c4214;
+}
+
+.big-img-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.already-a-client {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 150px;
+  color: #818198;
+}
+
+.authenticate-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: -40px;
+}
+
+.green-link {
+  color: #7ac944;
+  font-family: 'Montserrat';
+  text-decoration: underline;
+  margin-left: 16px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat';
+  padding: 8px 0;
+  color: #818198;
+}
+
+.contact-item i {
+  margin-right: 8px;
+}
+
+#applyNow .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-code {
+  width: 300px;
 }

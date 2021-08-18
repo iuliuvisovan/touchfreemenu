@@ -13,6 +13,8 @@ jQuery(function ($) {
     $('.screenshot').removeClass('active');
     setTimeout(() => {
       $($('.screenshot')[currentActiveScreenshotIndex]).addClass('active');
+      $('#screenshots').removeClass();
+      $('#screenshots').addClass('scrolled-to-' + (currentActiveScreenshotIndex + 1));
     }, 700);
   }, 3200);
 });
