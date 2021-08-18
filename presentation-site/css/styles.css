@@ -523,6 +523,18 @@ body {
     margin-bottom: 16px !important;
     margin-top: 64px !important;
   }
+
+  .scrolled-to-1 {
+    transform: translateX(202px);
+  }
+
+  .scrolled-to-2 {
+    transform: translateX(0px);
+  }
+
+  .scrolled-to-3 {
+    transform: translateX(-202px);
+  }
 }
 
 @media only screen and (min-width: 240px) {
@@ -1690,7 +1702,7 @@ ul#countdown li {
   text-decoration: none;
 }
 
-.left-content p {
+.left-content p, .left-content h2 {
   text-align: right;
 }
 
@@ -3642,16 +3654,4 @@ ul#countdown li {
 
 .qr-code {
   width: 300px;
-}
-
-.scrolled-to-1 {
-  transform: translateX(202px);
-}
-
-.scrolled-to-2 {
-  transform: translateX(0px);
-}
-
-.scrolled-to-3 {
-  transform: translateX(-202px);
 }
