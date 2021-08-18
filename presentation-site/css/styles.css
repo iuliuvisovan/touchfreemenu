@@ -219,6 +219,10 @@ body {
   text-align: center;
 }
 
+.wrapper {
+  background: #f9f9f9;
+}
+
 #loading-image {
   display: inline;
   top: 40%;
@@ -416,13 +420,21 @@ body {
   color: #ffffff !important;
 }
 
-.visible-mobile {
+.only-mobile {
   display: none;
 }
 
+.only-desktop {
+  display: flex;
+}
+
 @media only screen and (max-width: 767px) {
-  .visible-mobile {
+  .only-mobile {
     display: block;
+  }
+
+  .only-desktop {
+    display: none;
   }
 
   .navbar {
@@ -448,6 +460,46 @@ body {
 
   .navbar .btn-cta {
     padding: 0 30px;
+  }
+
+  .home-3 {
+    padding-bottom: 0 !important;
+    padding-top: 90px !important;
+    min-height: 0px !important;
+  }
+
+  .big-logo {
+    width: 40px !important;
+  }
+
+  h2 {
+    font-size: 32px !important;
+  }
+
+  h2 ~ p {
+    font-size: 16px !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  #screenshots {
+    padding-top: 50px !important;
+    transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .screenshot {
+    height: 300px !important;
+  }
+
+  .tag {
+    font-size: 18px!important;
+  }
+
+  .screenshot.active .tag {
+    transform: translateX(-150px)!important;
+    opacity: 1;
   }
 }
 
@@ -3410,8 +3462,10 @@ ul#countdown li {
 }
 
 #screenshots {
-  padding-top: 20px;
   position: relative;
+  padding: 20px 0;
+  padding-bottom: 80px;
+  background: #f9f9f9;
 }
 
 #screenshots > div {
@@ -3430,7 +3484,6 @@ ul#countdown li {
   position: relative;
   opacity: 0.25;
   filter: blur(2px);
-  translate: rotate(0deg);
   transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -3557,4 +3610,16 @@ ul#countdown li {
 
 .qr-code {
   width: 300px;
+}
+
+.scrolled-to-1 {
+  transform: translateX(202px);
+}
+
+.scrolled-to-2 {
+  transform: translateX(0px);
+}
+
+.scrolled-to-3 {
+  transform: translateX(-202px);
 }
