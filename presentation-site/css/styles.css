@@ -416,7 +416,15 @@ body {
   color: #ffffff !important;
 }
 
+.visible-mobile {
+  display: none;
+}
+
 @media only screen and (max-width: 767px) {
+  .visible-mobile {
+    display: block;
+  }
+
   .navbar {
     padding: 15px;
   }
@@ -1389,7 +1397,7 @@ ul#countdown li {
   margin-bottom: 20px;
 }
 
-.service-intro p {
+#applyNow p {
   font-size: 16px;
   font-weight: 400;
   color: rgb(129, 129, 152);
@@ -3145,7 +3153,7 @@ ul#countdown li {
   }
 
   #howitworks .f-text p {
-    padding: 0 16px!important;
+    padding: 0 16px !important;
   }
 
   .yd_flex {
@@ -3471,8 +3479,7 @@ ul#countdown li {
   font-size: 24px;
   font-weight: 500;
   color: #364655;
-  margin-top: 50px;
-  text-align: center;
+  margin-top: 30px;
 }
 
 .fixed-top {
@@ -3539,4 +3546,15 @@ ul#countdown li {
 
 .contact-item i {
   margin-right: 8px;
+}
+
+#applyNow .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-code {
+  width: 300px;
 }
