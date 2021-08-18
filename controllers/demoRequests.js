@@ -4,9 +4,9 @@ exports.requestDemo = async (req, res, next) => {
   try {
     const { email } = req.body;
 
-    const demoRequest = await DemoRequest.create({ email, date: new Date() });
-
-    res.status(201).json({ succesfullyRequested: true });
+    await DemoRequest.create({ email, date: new Date() });
+    
+    return next();
   } catch (err) {
     next(err);
   }
