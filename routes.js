@@ -1,4 +1,5 @@
 const demoRequests = require('./controllers/demoRequests');
+const notifications = require('./controllers/notifications');
 const users = require('./controllers/users');
 const categories = require('./controllers/categories');
 const products = require('./controllers/products');
@@ -10,7 +11,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDoc = yamljs.load('swagger/api.yaml');
 const Sentry = require('@sentry/node');
 
-router.post('/request-demo', demoRequests.requestDemo);
+router.post('/request-demo', demoRequests.requestDemo, notifications.sendEmail);
 router.post('/login', users.login);
 router.post('/change-password', auth.withCurrentUser, users.changePassword);
 router.post('/register', users.validate(), users.register);
