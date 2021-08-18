@@ -223,6 +223,10 @@ body {
   background: #f9f9f9;
 }
 
+#main {
+  overflow-y: hidden;
+}
+
 #loading-image {
   display: inline;
   top: 40%;
@@ -421,7 +425,7 @@ body {
 }
 
 .only-mobile {
-  display: none;
+  display: none !important;
 }
 
 .only-desktop {
@@ -430,11 +434,11 @@ body {
 
 @media only screen and (max-width: 767px) {
   .only-mobile {
-    display: block;
+    display: block !important;
   }
 
   .only-desktop {
-    display: none;
+    display: none !important;
   }
 
   .navbar {
@@ -494,12 +498,30 @@ body {
   }
 
   .tag {
-    font-size: 18px!important;
+    font-size: 18px !important;
   }
 
   .screenshot.active .tag {
-    transform: translateX(-150px)!important;
+    transform: translateX(-150px) !important;
     opacity: 1;
+  }
+
+  .f-text {
+    padding: 0 !important;
+    margin-top: 19px !important;
+  }
+
+  .f-text p {
+    text-align: center !important;
+  }
+
+  .how-does-it-work .img-wrapper {
+    width: calc(100vw - 80px) !important;
+  }
+
+  .how-does-it-work {
+    margin-bottom: 16px !important;
+    margin-top: 64px !important;
   }
 }
 
@@ -1666,6 +1688,10 @@ ul#countdown li {
   position: relative;
   display: inline-block;
   text-decoration: none;
+}
+
+.left-content p {
+  text-align: right;
 }
 
 .flex-inner .f-text .left-content a::after {
@@ -3549,7 +3575,8 @@ ul#countdown li {
 .how-does-it-work i {
   position: absolute;
   bottom: -30px;
-  left: 321px;
+  right: -28px;
+  z-index: 1;
 }
 
 .how-does-it-work img {
@@ -3565,6 +3592,11 @@ ul#countdown li {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0px 30px #303c4214;
+}
+
+.big-img-wrapper {
+  position: relative;
+  height: 100%;
 }
 
 .already-a-client {
