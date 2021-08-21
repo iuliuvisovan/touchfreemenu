@@ -3,12 +3,10 @@ const { login, createAuthToken } = require('../services/auth');
 const User = require('../models/user');
 const Category = require('../models/category');
 const Product = require('../models/product');
-const AWS = require('aws-sdk');
 const moment = require('moment');
 var QRCode = require('qrcode');
 const { toImageUrl } = require('./utils');
 moment.locale('ro');
-AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_KEY });
 
 exports.login = (req, res, next) => {
   if (!req.body.username?.length || !req.body.password?.length) {
@@ -39,7 +37,9 @@ exports.register = async (req, res, next) => {
   }
 
   try {
-    const { username, password, name, email, logoUrl, city, coords, registrationSecret, coverPhotoUrl, logoWidthPercentage } = req.body;
+    const { username, password, name, email, city, coords, registrationSecret, logoWidthPercentage } = req.body;
+    const logoUrl = toImageUrl(req.uploadedLogoUrl);
+    const coverPhotoUrl = toImageUrl(req.uploadedCoverUrl);
 
     if (registrationSecret !== process.env.REGISTRATION_SECRET) {
       return res.status(422).json({ message: 'Wrong registration secret' });

@@ -3,6 +3,7 @@ const notifications = require('./controllers/notifications');
 const users = require('./controllers/users');
 const categories = require('./controllers/categories');
 const products = require('./controllers/products');
+const upload = require('./controllers/upload');
 const auth = require('./services/auth');
 const express = require('express');
 const router = express.Router();
@@ -14,7 +15,7 @@ const Sentry = require('@sentry/node');
 router.post('/request-demo', demoRequests.requestDemo, notifications.sendEmail);
 router.post('/login', users.login);
 router.post('/change-password', auth.withCurrentUser, users.changePassword);
-router.post('/register', users.validate(), users.register);
+router.post('/register', upload.uploadLogosToS3, users.validate(), users.register);
 router.get('/get-current-user', auth.withCurrentUser, users.getCurrentUser);
 
 router.get('/categories', auth.withCurrentUser, categories.getAll);
@@ -24,8 +25,8 @@ router.delete('/categories/:categoryId', auth.withCurrentUser, categories.delete
 router.post('/categories/move', auth.withCurrentUser, categories.move);
 
 router.get('/products', auth.withCurrentUser, products.getAll);
-router.post('/products', auth.withCurrentUser, products.uploadImageToS3, products.create);
-router.put('/products', auth.withCurrentUser, products.uploadImageToS3, products.edit);
+router.post('/products', auth.withCurrentUser, upload.uploadImageToS3, products.create);
+router.put('/products', auth.withCurrentUser, upload.uploadImageToS3, products.edit);
 router.delete('/products/:productId', auth.withCurrentUser, products.delete);
 router.post('/products/move', auth.withCurrentUser, products.move);
 
