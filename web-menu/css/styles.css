@@ -375,7 +375,7 @@ highlighted {
   padding: 0 6px;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0 4px 12px #0004;
+  box-shadow: 0 4px 12px #000b;
   display: flex;
   align-items: center;
 }
@@ -383,7 +383,6 @@ highlighted {
 .img-wrapper {
   border-radius: 3px;
   overflow: hidden;
-  display: flex;
 }
 
 .img-wrapper img {
