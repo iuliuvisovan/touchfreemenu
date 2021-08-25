@@ -1,9 +1,10 @@
-<html translate="no">
+<html translate="no" lang="ro">
   <head>
     <meta charset="utf-8" />
     <title>Meniu | <%- restaurant.name %></title>
     <link rel="icon" href="img/logo-medium.png" type="image/png" sizes="16x16" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Cea mai bună versiune a meniului tău" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/styles.css?rndstr=<%= +new Date() %>" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
@@ -12,7 +13,7 @@
     <meta property="og:url" content="https://touchfreemenu.ro/<%- restaurant.username %>" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Meniu <%- restaurant.name %> | Touch-Free Menu™" />
-    <meta property="og:description" content="Alternativa digitală la meniurile clasice." />
+    <meta property="og:description" content="Cea mai bună versiune a meniului tău" />
     <meta name="keywords" content="menu,restaurant,food,digital,<%- restaurant.name %>" />
     <meta property="og:image" content="<%- restaurant.coverPhotoUrl %>" />
   </head>
@@ -20,7 +21,7 @@
   <body onscroll="hideKeyboard(event)">
     <div class="menu">
       <div class="cover-wrapper">
-        <img class="cover-photo" src="<%- restaurant.coverPhotoUrl %>" />
+        <img class="cover-photo" src="<%- restaurant.coverPhotoUrl %>" alt="Cover photo" />
         <div class="bottom-gradient"></div>
         <div class="restaurant-logo-wrapper">
           <img

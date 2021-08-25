@@ -6,7 +6,7 @@ const path = require('path');
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY
+  secretAccessKey: process.env.AWS_SECRET_KEY,
 });
 
 const imageFilter = (req, file, cb) => {
@@ -27,6 +27,7 @@ exports.uploadLogosToS3 = multer({
     s3: new AWS.S3(),
     acl: 'public-read',
     bucket: process.env.AWS_BUCKET_NAME,
+    cacheControl: 'max-age=604800',
     key: function (req, file, cb) {
       let imageKey;
       const fileExtension = path.extname(file.originalname);
@@ -40,11 +41,11 @@ exports.uploadLogosToS3 = multer({
       }
 
       cb(null, imageKey);
-    }
+    },
   }),
 }).fields([
-  { name: "logoUrl", maxCount: 1 },
-  { name: "coverPhotoUrl", maxCount: 1 }
+  { name: 'logoUrl', maxCount: 1 },
+  { name: 'coverPhotoUrl', maxCount: 1 },
 ]);
 
 exports.uploadImageToS3 = multer({
@@ -53,6 +54,7 @@ exports.uploadImageToS3 = multer({
     s3: new AWS.S3(),
     acl: 'public-read',
     bucket: process.env.AWS_BUCKET_NAME,
+    cacheControl: 'max-age=604800',
     shouldTransform: function (_, _, cb) {
       cb(null, true);
     },
