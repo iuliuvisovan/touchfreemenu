@@ -158,7 +158,7 @@ h2 {
 
 .categories-wrapper {
   padding: 16px;
-  overflow: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   top: 0;
   position: sticky;
