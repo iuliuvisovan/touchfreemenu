@@ -5,14 +5,23 @@
     <link rel="icon" href="<%- logoUrl %>" type="image/png" sizes="16x16" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#303336" />
     <style>
-      .bleed {
-        font-family: 'Kumbh Sans', sans-serif;
+      html * {
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: 'Kumbh Sans';
+      }
+
+      .bleed {
         overflow: hidden;
         display: inline-block;
         width: 113mm;
@@ -56,10 +65,10 @@
         margin-top: calc(32px + 4mm);
       }
 
-      .scan-text {
-        font-family: 'Kumbh Sans';
-        width: 100%;
-        text-align: center;
+      .scan-me-for {
+        font-size: 15px;
+        margin-bottom: 6px;
+        margin-top: -4mm;
       }
 
       .footer {
@@ -83,6 +92,23 @@
         border-radius: 28px;
         border: 0.5px dashed #fff0;
         color: #9ca0a4;
+        font-size: 9px;
+        margin-right: 2px;
+        margin-top: -2px;
+      }
+
+      .powered-by {
+        font-size: 11px;
+        font-weight: 400;
+      }
+
+      .website {
+        font-size: 8px;
+        color: #9ca0a4;
+        letter-spacing: 0.2px;
+        font-weight: 400;
+        margin-bottom: 2px;
+        margin-top: -1px;
       }
 
       @media print {
@@ -106,19 +132,19 @@
           <img style="height: 308px; margin-top: -8px; position: relative; z-index: -1" src="/<%- restaurantSlug %>/my-qr-code.svg" alt="QR Code" />
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
-          <span style="font-size: 15px; margin-bottom: 2px; margin-top: -8px">SCAN ME FOR THE</span>
-          <span style="font-size: 46px; font-weight: 800">MENU</span>
+          <span class="scan-me-for">SCAN ME FOR THE</span>
+          <span style="font-size: 46px; font-weight: 800; margin-top: -2mm">MENU</span>
         </div>
         <div class="footer">
           <div style="display: flex; align-items: center">
-            <img style="width: 13px; margin-right: 10px; margin-left: 4px" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
+            <img style="width: 13px; margin-right: 10px; margin-left: 4px; font-weight: 500" src="https://www.touchfreemenu.ro/img/logo.svg" type="image/png" />
             <div style="display: flex; justify-content: center; flex-direction: column">
-              <span style="font-size: 11px">Powered by Touch-Free Menu™</span>
-              <span style="font-size: 8px; color: #9ca0a4; margin-top: 1px; margin-bottom: -2px; letter-spacing: 0.2px">www.touchfreemenu.ro</span>
+              <span class="powered-by">Powered by Touch-Free Menu™</span>
+              <span class="website">www.touchfreemenu.ro</span>
             </div>
           </div>
           <div class="slug">
-            <span style="font-size: 9px; margin-right: 2px">tfmn.ro/<b><%- restaurantSlug %></b></span>
+            <span>tfmn.ro/<b><%- restaurantSlug %></b></span>
           </div>
         </div>
       </div>
