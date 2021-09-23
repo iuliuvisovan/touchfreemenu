@@ -107,7 +107,7 @@ h2 {
 
 .search-icon {
   position: absolute;
-  top: 28px;
+  top: 26px;
   left: 28px;
   color: #221818;
   width: 30px;
@@ -147,6 +147,7 @@ h2 {
   width: 100%;
   padding-left: 40px;
   height: 42px;
+  box-sizing: border-box;
 }
 
 ::placeholder {
@@ -220,7 +221,7 @@ h2 {
   position: relative;
   border-radius: 8px;
   padding: 10px 12px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #221818;
   transition: all 0.2s ease-in-out;
   border: 1px solid #2218181a;
@@ -383,6 +384,7 @@ highlighted {
 .img-wrapper {
   border-radius: 3px;
   overflow: hidden;
+  padding-top: 5px;
 }
 
 .img-wrapper img {
