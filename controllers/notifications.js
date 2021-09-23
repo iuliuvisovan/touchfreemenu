@@ -30,6 +30,10 @@ exports.sendDemoRequestEmail = async (req, res, next) => {
 exports.sendNavigationEmail = async (req) => {
   const requestInfo = parser(req.headers['user-agent']);
 
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+  requestInfo.ip = ip;
+
   const mailOptions = {
     from: process.env.ZOHO_USER,
     to: process.env.ZOHO_USER,
