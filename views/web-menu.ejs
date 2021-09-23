@@ -5,18 +5,18 @@
     <title>Meniu | <%- restaurant.name %> <%- restaurant.city %></title>
     <link rel="icon" href="img/logo-medium.png" type="image/png" sizes="16x16" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Cea mai bună versiune a meniului tău" />
+    <meta name="description" content="Vezi meniul complet al restaurantului <%- restaurant.name %> <%- restaurant.city %>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/menu-styles.css?rndstr=<%= +new Date() %>" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-    <meta http-equiv="Content-Security-Policy" content="child-src 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="child-src 'none'; object-src 'none'" />
 
     <meta name="theme-color" content="<%- restaurant.themeColor || '#221818' %>" />
     <meta property="og:url" content="https://touchfreemenu.ro/<%- restaurant.username %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Meniu <%- restaurant.name %> | Touch-Free Menu™" />
-    <meta property="og:description" content="Cea mai bună versiune a meniului tău" />
-    <meta name="keywords" content="menu,restaurant,food,digital,<%- restaurant.name %>" />
+    <meta property="og:title" content="Meniu <%- restaurant.name %> <%- restaurant.city %> | Touch-Free Menu™" />
+    <meta property="og:description" content="Vezi meniul complet al restaurantului <%- restaurant.name %> <%- restaurant.city %>" />
+    <meta name="keywords" content="menu,restaurant,food,digital,<%- restaurant.name %>, <%- restaurant.name %> <%- restaurant.city %>" />
     <meta property="og:image" content="<%- restaurant.coverPhotoUrl %>" />
   </head>
 
