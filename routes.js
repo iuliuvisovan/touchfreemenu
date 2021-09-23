@@ -12,7 +12,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDoc = yamljs.load('swagger/api.yaml');
 const Sentry = require('@sentry/node');
 
-router.post('/request-demo', demoRequests.requestDemo, notifications.sendEmail);
+router.post('/request-demo', demoRequests.requestDemo, notifications.sendDemoRequestEmail);
 router.post('/login', users.login);
 router.post('/change-password', auth.withCurrentUser, users.changePassword);
 router.post('/register', upload.uploadLogosToS3, users.validate(), users.register);
@@ -38,10 +38,17 @@ module.exports = (app) => {
   app.use(Sentry.Handlers.errorHandler());
 
   app.use((req, res, next) => {
+    const { s, source } = req.query;
+    if (s || source) {
+      notifications.sendNavigationEmail(req);
+    }
+
     const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');
     const requestedPath = (req.headers.referer || '').slice(lastIndexOfSlash + 1);
 
-    if ([...(req.headers.referer || '')].filter((x) => x === '/').length == 3 && requestedPath.length > 0) {
+    const hasThreeSlashes = [...(req.headers.referer || '')].filter((x) => x === '/').length == 3 && requestedPath.length > 0;
+
+    if (hasThreeSlashes) {
       express.static('web-menu')(req, res, next);
     } else {
       express.static('presentation-site')(req, res, next);
