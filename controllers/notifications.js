@@ -1,4 +1,5 @@
 const parser = require('ua-parser-js');
+const geoip = require('geoip-lite');
 const nodeMailer = require('nodemailer');
 const nodeMailerClient = nodeMailer.createTransport({
   host: 'smtp.zoho.eu',
@@ -34,13 +35,28 @@ exports.sendNavigationEmail = async (req) => {
 
   requestInfo.ip = ip;
 
+  const geo = geoip.lookup(ip.split(',')[0]) || {};
+
   const mailOptions = {
     from: process.env.ZOHO_USER,
     to: process.env.ZOHO_USER,
     subject: `[${process.env.ENV}] New Navigation to ${req.originalUrl} (${requestInfo.browser.name} on ${requestInfo.os.name} ${requestInfo.os.version})`,
     text: `[${process.env.ENV}] New navigation to ${req.originalUrl}
+
+    Location: ${geo.city}, ${geo.region}, ${geo.country}
+    Platform: ${requestInfo.os.name} (v${requestInfo.os.version})
+    Browser: ${requestInfo.browser.name} (v${requestInfo.browser.version})
+
+    ----------------------
+
+    Full request: 
+
+    ${JSON.stringify(requestInfo, null, 4)}
+
+
+    Geo: 
     
-    Request info: ${JSON.stringify(requestInfo, null, 4)}`,
+    ${JSON.stringify(geo, null, 4)}`,
   };
 
   console.log('mailOptions', mailOptions);
