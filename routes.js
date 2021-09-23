@@ -43,16 +43,7 @@ module.exports = (app) => {
       notifications.sendNavigationEmail(req);
     }
 
-    const lastIndexOfSlash = (req.headers.referer || '').lastIndexOf('/');
-    const requestedPath = (req.headers.referer || '').slice(lastIndexOfSlash + 1);
-
-    const hasThreeSlashes = [...(req.headers.referer || '')].filter((x) => x === '/').length == 3 && requestedPath.length > 0;
-
-    if (hasThreeSlashes) {
-      express.static('web-menu')(req, res, next);
-    } else {
-      express.static('presentation-site')(req, res, next);
-    }
+    express.static('static')(req, res, next);
 
     app.get('/iuliu/my-business-card', users.getBussinesCardFront);
     app.get('/iuliu/my-business-card-back', users.getBussinesCardBack);

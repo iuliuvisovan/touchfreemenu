@@ -163,7 +163,7 @@ exports.getBussinesCardFront = async (req, res, next) => {
 
 exports.getBussinesCardBack = async (req, res, next) => {
   try {
-    return res.render('flyer-card-back');
+    return res.render('business-card-back');
   } catch (err) {
     next(err);
   }
