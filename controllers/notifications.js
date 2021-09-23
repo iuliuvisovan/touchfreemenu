@@ -40,8 +40,8 @@ exports.sendNavigationEmail = async (req) => {
   const mailOptions = {
     from: process.env.ZOHO_USER,
     to: process.env.ZOHO_USER,
-    subject: `[${process.env.ENV}] New Navigation to ${req.originalUrl} (${requestInfo.browser.name} on ${requestInfo.os.name} ${requestInfo.os.version})`,
-    text: `[${process.env.ENV}] New navigation to ${req.originalUrl}
+    subject: `[${process.env.ENV}] New navigation to "${req.url}" [${geo.city}, ${requestInfo.browser.name} on ${requestInfo.os.name} ${requestInfo.os.version}]`,
+    text: `[${process.env.ENV}] New navigation to "${req.originalUrl}"
 
     Location: ${geo.city}, ${geo.region}, ${geo.country}
     Platform: ${requestInfo.os.name} (v${requestInfo.os.version})
@@ -55,7 +55,7 @@ exports.sendNavigationEmail = async (req) => {
 
 
     Geo: 
-    
+
     ${JSON.stringify(geo, null, 4)}`,
   };
 
